@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://wjkc7hj0ro3j"]
+
+[ext_resource type="Script" uid="uid://c0omg8jps4qx5" path="res://Scripts/batalha.gd" id="1_d3anb"]
+[ext_resource type="PackedScene" uid="uid://bruwqxrq7gprr" path="res://Scenas/modelos/perns/subaru_modelo.tscn" id="1_v2eyi"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51h8h"]
+sky_top_color = Color(0.5555752, 0.21058914, 0.13391468, 1)
+sky_horizon_color = Color(0.5453599, 0.4230903, 0.38328564, 1)
+ground_bottom_color = Color(0.25293937, 0.10884706, 0.026302842, 1)
+ground_horizon_color = Color(0.5453599, 0.4230903, 0.38328564, 1)
+
+[sub_resource type="Sky" id="Sky_v2eyi"]
+sky_material = SubResource("ProceduralSkyMaterial_51h8h")
+
+[sub_resource type="Environment" id="Environment_ten2k"]
+background_mode = 2
+sky = SubResource("Sky_v2eyi")
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(36.229458, 0.12061719, 26.709747)
+
+[node name="batalha" type="Node3D" unique_id=355517198 node_paths=PackedStringArray("cart_1", "cart_2", "cart_3")]
+script = ExtResource("1_d3anb")
+cart_1 = NodePath("CanvasLayer/cart1")
+cart_2 = NodePath("CanvasLayer/cart2")
+cart_3 = NodePath("CanvasLayer/cart3")
+
+[node name="elementos" type="Node3D" parent="." unique_id=575776250]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="elementos" unique_id=1311279439]
+environment = SubResource("Environment_ten2k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="elementos" unique_id=1840159306]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.99786097, 1, 0.9060223, 1)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="elementos" unique_id=1965732325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1571865, 0.12224144, -6.693882)
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="perso" type="Marker3D" parent="elementos" unique_id=633792833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.514286, 0, -3.7919471)
+
+[node name="Inim" type="Marker3D" parent="elementos" unique_id=1607954188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.514286, 0, -3.7919471)
+
+[node name="personagem" type="Node3D" parent="." unique_id=200919337]
+
+[node name="SUBARUModelo" parent="personagem" unique_id=615747941 instance=ExtResource("1_v2eyi")]
+transform = Transform3D(0.051424403, 0, 0.4973485, 0, 0.5, 0, -0.4973485, 0, 0.051424403, -10.318798, 0, -4.515648)
+
+[node name="Marker3D" type="Marker3D" parent="personagem" unique_id=1737579023]
+transform = Transform3D(0.22764361, 0, -0.5551381, 0, 0.59999996, 0, 0.5551381, 0, 0.22764361, -8.35973, 0.26553762, -4.8560476)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1634992761]
+transform = Transform3D(-0.0098739965, 0.49634224, -0.8680708, 0.005645351, 0.8681269, 0.49631014, 0.9999353, 4.6563117e-10, -0.011373908, -11.004258, 1.114732, -3.6807191)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=770167127]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=116384715]
+offset_left = 163.0
+offset_top = 540.0
+offset_right = 888.0
+offset_bottom = 649.0
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=417849901]
+offset_left = 368.0
+offset_top = 185.0
+offset_right = 626.0
+offset_bottom = 268.0
+theme_override_font_sizes/font_size = 60
+text = "ROUDE 1"
+
+[node name="cart1" type="TextureButton" parent="CanvasLayer" unique_id=1851055758]
+offset_left = 818.0
+offset_top = 375.0
+offset_right = 924.0
+offset_bottom = 533.0
+
+[node name="cart2" type="TextureButton" parent="CanvasLayer" unique_id=1145796554]
+offset_left = 620.0
+offset_top = 387.0
+offset_right = 710.0
+offset_bottom = 502.0
+
+[node name="cart3" type="TextureButton" parent="CanvasLayer" unique_id=645800345]
+offset_left = 487.0
+offset_top = 373.0
+offset_right = 592.0
+offset_bottom = 492.0

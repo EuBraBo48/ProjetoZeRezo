@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dm33ptgmdhjve"]
+
+[ext_resource type="Texture2D" uid="uid://dmyapc5ej6ry2" path="res://assents/Sprite-0001.png" id="1_uwlf6"]
+[ext_resource type="Texture2D" uid="uid://bbkejtc0hschc" path="res://assents/card.png" id="2_j3oic"]
+
+[node name="hud" type="Control" unique_id=346732960]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=30832292]
+layout_mode = 0
+offset_left = 301.0
+offset_top = 16.0
+offset_right = 610.0
+offset_bottom = 46.0
+
+[node name="torrer" type="Sprite2D" parent="." unique_id=1885426305]
+position = Vector2(636, 25.000002)
+scale = Vector2(1.375, 1.34375)
+texture = ExtResource("1_uwlf6")
+
+[node name="Card" type="Sprite2D" parent="." unique_id=181815595]
+position = Vector2(1085, 585)
+scale = Vector2(3, 3)
+texture = ExtResource("2_j3oic")

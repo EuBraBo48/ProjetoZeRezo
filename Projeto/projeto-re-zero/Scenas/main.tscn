@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bxtnblrjpupet"]
+
+[ext_resource type="PackedScene" uid="uid://bobh5qh6u1vx" path="res://Scenas/modelos/casts_rezero.tscn" id="1_obejx"]
+[ext_resource type="PackedScene" uid="uid://btvaqtftkvqh6" path="res://Scenas/player.tscn" id="2_ue5qb"]
+[ext_resource type="PackedScene" uid="uid://dm33ptgmdhjve" path="res://Scenas/hud.tscn" id="3_urld1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ue5qb"]
+sky_top_color = Color(0.5555752, 0.21058914, 0.13391468, 1)
+sky_horizon_color = Color(0.5453599, 0.4230903, 0.38328564, 1)
+ground_bottom_color = Color(0.25293937, 0.10884706, 0.026302842, 1)
+ground_horizon_color = Color(0.5453599, 0.4230903, 0.38328564, 1)
+
+[sub_resource type="Sky" id="Sky_urld1"]
+sky_material = SubResource("ProceduralSkyMaterial_ue5qb")
+
+[sub_resource type="Environment" id="Environment_an1xy"]
+background_mode = 2
+sky = SubResource("Sky_urld1")
+
+[node name="main" type="Node3D" unique_id=1024995309]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=328110103]
+transform = Transform3D(-0.8660254, -0.31466022, 0.38857302, 0, 0.7771459, 0.6293204, -0.50000006, 0.5450074, -0.6730281, 0, 0, 0)
+light_color = Color(0.99786097, 1, 0.9060223, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1833412717]
+environment = SubResource("Environment_an1xy")
+
+[node name="castsRezero" parent="." unique_id=1146864740 instance=ExtResource("1_obejx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9442463, -0.6232834, -0.6445999)
+
+[node name="player" parent="." unique_id=1321939021 instance=ExtResource("2_ue5qb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2086439, 0.5152731, -4.05207)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1632000829]
+
+[node name="hud" parent="CanvasLayer" unique_id=346732960 instance=ExtResource("3_urld1")]

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cj6m2r4ss2lc"]
+
+[ext_resource type="Script" uid="uid://laisybvxj0ce" path="res://Scripts/cart.gd" id="1_pp6wg"]
+
+[node name="CART" type="Control" unique_id=1817362618 node_paths=PackedStringArray("cart_1", "cart_2", "cart_3")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pp6wg")
+cart_1 = NodePath("TextureButton")
+cart_2 = NodePath("TextureButton2")
+cart_3 = NodePath("TextureButton3")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=1860106843]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton2" type="TextureButton" parent="." unique_id=1259780962]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureButton3" type="TextureButton" parent="." unique_id=613305477]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
