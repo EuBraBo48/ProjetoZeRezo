@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b7wuchgxflfyl"]
+
+[ext_resource type="Script" uid="uid://bm2mbie2nd66r" path="res://Scripts/inimigo_cartd.gd" id="1_okcm1"]
+
+[node name="InimigoCartd" type="Node3D" unique_id=865060130]
+script = ExtResource("1_okcm1")

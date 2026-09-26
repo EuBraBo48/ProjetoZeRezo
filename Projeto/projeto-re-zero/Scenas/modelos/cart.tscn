@@ -11,21 +11,12 @@ offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pp6wg")
-cart_1 = NodePath("TextureButton")
-cart_2 = NodePath("TextureButton2")
-cart_3 = NodePath("TextureButton3")
+cart_1 = NodePath("cart1")
+cart_2 = NodePath("cart2")
+cart_3 = NodePath("cart3")
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1860106843]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="cart1" type="Sprite2D" parent="." unique_id=921286132]
 
-[node name="TextureButton2" type="TextureButton" parent="." unique_id=1259780962]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="cart2" type="Sprite2D" parent="." unique_id=1763063698]
 
-[node name="TextureButton3" type="TextureButton" parent="." unique_id=613305477]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="cart3" type="Sprite2D" parent="." unique_id=1875495457]

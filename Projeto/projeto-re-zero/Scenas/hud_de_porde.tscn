@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://b0a027c4bmk8g"]
+
+[ext_resource type="Script" uid="uid://ckt7cb02qhov3" path="res://Scripts/hud_de_porde.gd" id="1_yt8dy"]
+
+[node name="hudDePorde" type="Control" unique_id=1331471706]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yt8dy")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1028163948]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 223.0
+offset_right = 916.0
+offset_bottom = 419.0
+color = Color(0, 0, 0, 1)
+
+[node name="NH1" type="Label" parent="." unique_id=727467367]
+layout_mode = 0
+offset_left = 797.0
+offset_top = 238.0
+offset_right = 846.0
+offset_bottom = 287.0
+text = "pode1"
+
+[node name="NH2" type="Label" parent="." unique_id=546746345]
+layout_mode = 0
+offset_left = 799.0
+offset_top = 319.0
+offset_right = 848.0
+offset_bottom = 368.0
+text = "pode1"
+
+[node name="NH3" type="Label" parent="." unique_id=806595729]
+layout_mode = 0
+offset_left = 796.0
+offset_top = 277.0
+offset_right = 845.0
+offset_bottom = 326.0
+text = "pode1"
+
+[node name="BH1" type="Button" parent="." unique_id=518035987]
+layout_mode = 0
+offset_left = 795.0
+offset_top = 237.0
+offset_right = 843.0
+offset_bottom = 267.0
+
+[node name="BH2" type="Button" parent="." unique_id=927889840]
+layout_mode = 0
+offset_left = 799.0
+offset_top = 280.0
+offset_right = 839.0
+offset_bottom = 300.0
+
+[node name="BH3" type="Button" parent="." unique_id=103748105]
+layout_mode = 0
+offset_left = 783.0
+offset_top = 324.0
+offset_right = 885.0
+offset_bottom = 345.0
+
+[connection signal="pressed" from="BH1" to="." method="_on_bh_1_pressed"]
+[connection signal="pressed" from="BH2" to="." method="_on_bh_2_pressed"]
+[connection signal="pressed" from="BH3" to="." method="_on_bh_3_pressed"]

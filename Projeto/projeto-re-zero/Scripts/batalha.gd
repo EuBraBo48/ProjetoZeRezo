@@ -2,20 +2,30 @@ extends Node3D
 
 var qualCart: String = ""
 
-@export var cart_1: TextureButton 
-@export var cart_2: TextureButton 
-@export var cart_3: TextureButton 
-@onready var ps: Marker3D = $personagem/Marker3D
+@export var cart_1: Node2D 
+@export var cart_2: Node2D 
+@export var cart_3: Node2D 
+@export var ps: Marker3D 
+@export var psN: Marker3D 
+var BRUXA = preload("res://Scenas/modelos/perns/bruxa.tscn")
+var ESZA = preload("res://Scenas/modelos/perns/esza.tscn")
+
 
 func _ready() -> void:
-	var inimig = Gobla.InimeDaCena.instantiate()
-	ps.add_child(inimig)
-	cart_1.texture_normal = load(Gobla.cart1["normal"])
-	cart_1.texture_hover = load(Gobla.cart1["hover"])
-	cart_2.texture_normal = load(Gobla.cart2["normal"])
-	cart_2.texture_hover = load(Gobla.cart2["hover"])
-	cart_3.texture_normal = load(Gobla.cart3["normal"])
-	cart_3.texture_hover = load(Gobla.cart3["hover"])
+	if Gobla.InimeDaCena == BRUXA or Gobla.InimeDaCena == ESZA:
+		print("etrete")
+		var inimigN = Gobla.InimeDaCena.instantiate()
+		psN.add_child(inimigN)
+		cart_1.sprite.texture = load(Gobla.cart1["normal"])
+		cart_2.sprite.texture = load(Gobla.cart2["normal"])
+		cart_3.sprite.texture = load(Gobla.cart3["normal"])
+
+	else:
+		var inimig = Gobla.InimeDaCena.instantiate()
+		ps.add_child(inimig)
+		cart_1.texture = load(Gobla.cart1["normal"])
+		cart_2.texture = load(Gobla.cart2["normal"])
+		cart_3.texture = load(Gobla.cart3["normal"])
 
 
 func SelencPersong() -> void:

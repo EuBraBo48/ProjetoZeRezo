@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c0omg8jps4qx5" path="res://Scripts/batalha.gd" id="1_d3anb"]
 [ext_resource type="PackedScene" uid="uid://bruwqxrq7gprr" path="res://Scenas/modelos/perns/subaru_modelo.tscn" id="1_v2eyi"]
+[ext_resource type="PackedScene" uid="uid://bgxe68y4u6t5q" path="res://Scenas/cart.tscn" id="3_1ve5g"]
+[ext_resource type="Script" uid="uid://bdlo5vbtnoyae" path="res://Scripts/battle_manager.gd" id="3_rfanb"]
+[ext_resource type="Script" uid="uid://4l1i4r2wxygi" path="res://Scripts/are_de_arasto.gd" id="3_wup45"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51h8h"]
 sky_top_color = Color(0.5555752, 0.21058914, 0.13391468, 1)
@@ -19,11 +22,16 @@ sky = SubResource("Sky_v2eyi")
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(36.229458, 0.12061719, 26.709747)
 
-[node name="batalha" type="Node3D" unique_id=355517198 node_paths=PackedStringArray("cart_1", "cart_2", "cart_3")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
+size = Vector2(215.5, 179)
+
+[node name="batalha" type="Node3D" unique_id=355517198 node_paths=PackedStringArray("cart_1", "cart_2", "cart_3", "ps", "psN")]
 script = ExtResource("1_d3anb")
 cart_1 = NodePath("CanvasLayer/cart1")
 cart_2 = NodePath("CanvasLayer/cart2")
 cart_3 = NodePath("CanvasLayer/cart3")
+ps = NodePath("personagem/Marker3D")
+psN = NodePath("personagem/PErsoN")
 
 [node name="elementos" type="Node3D" parent="." unique_id=575776250]
 
@@ -51,12 +59,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.514286, 0, -3.7919471)
 transform = Transform3D(0.051424403, 0, 0.4973485, 0, 0.5, 0, -0.4973485, 0, 0.051424403, -10.318798, 0, -4.515648)
 
 [node name="Marker3D" type="Marker3D" parent="personagem" unique_id=1737579023]
-transform = Transform3D(0.22764361, 0, -0.5551381, 0, 0.59999996, 0, 0.5551381, 0, 0.22764361, -8.35973, 0.26553762, -4.8560476)
+transform = Transform3D(0.22764361, 0, -0.5551381, 0, 0.59999996, 0, 0.5551381, 0, 0.22764361, -8.574871, 0.19081092, -4.8560476)
+
+[node name="markerPEr" type="Marker3D" parent="personagem" unique_id=298412652]
+transform = Transform3D(-0.05010256, 0, 0.59790444, 0, 0.59999996, 0, -0.59790444, 0, -0.05010256, -10.164641, 0.17128801, -3.4828603)
+
+[node name="PErsoN" type="Marker3D" parent="personagem" unique_id=1134293720]
+transform = Transform3D(0.22764361, 0, -0.5551381, 0, 0.59999996, 0, 0.5551381, 0, 0.22764361, -8.574871, 0.77751845, -4.8560476)
+
+[node name="BattleManager" type="Node3D" parent="personagem" unique_id=889090654]
+script = ExtResource("3_rfanb")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1634992761]
 transform = Transform3D(-0.0098739965, 0.49634224, -0.8680708, 0.005645351, 0.8681269, 0.49631014, 0.9999353, 4.6563117e-10, -0.011373908, -11.004258, 1.114732, -3.6807191)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=770167127]
+
+[node name="AreDeArasto" type="StaticBody2D" parent="CanvasLayer" unique_id=30808374 groups=["dropable"]]
+position = Vector2(-2, 1)
+script = ExtResource("3_wup45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/AreDeArasto" unique_id=1213559932]
+position = Vector2(617.25, 263)
+shape = SubResource("RectangleShape2D_g4v7s")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/AreDeArasto" unique_id=66410515]
+offset_left = 512.0
+offset_top = 172.0
+offset_right = 721.0
+offset_bottom = 357.0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=116384715]
 offset_left = 163.0
@@ -65,27 +96,21 @@ offset_right = 888.0
 offset_bottom = 649.0
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=417849901]
-offset_left = 368.0
-offset_top = 185.0
-offset_right = 626.0
-offset_bottom = 268.0
+offset_left = 886.0
+offset_top = -10.0
+offset_right = 1144.0
+offset_bottom = 73.0
 theme_override_font_sizes/font_size = 60
 text = "ROUDE 1"
 
-[node name="cart1" type="TextureButton" parent="CanvasLayer" unique_id=1851055758]
-offset_left = 818.0
-offset_top = 375.0
-offset_right = 924.0
-offset_bottom = 533.0
+[node name="cart1" parent="CanvasLayer" unique_id=181800887 node_paths=PackedStringArray("per") instance=ExtResource("3_1ve5g")]
+position = Vector2(655, 545)
+per = NodePath("../../personagem/markerPEr")
 
-[node name="cart2" type="TextureButton" parent="CanvasLayer" unique_id=1145796554]
-offset_left = 620.0
-offset_top = 387.0
-offset_right = 710.0
-offset_bottom = 502.0
+[node name="cart2" parent="CanvasLayer" unique_id=937391906 node_paths=PackedStringArray("per") instance=ExtResource("3_1ve5g")]
+position = Vector2(823, 551)
+per = NodePath("../../personagem/markerPEr")
 
-[node name="cart3" type="TextureButton" parent="CanvasLayer" unique_id=645800345]
-offset_left = 487.0
-offset_top = 373.0
-offset_right = 592.0
-offset_bottom = 492.0
+[node name="cart3" parent="CanvasLayer" unique_id=1221620671 node_paths=PackedStringArray("per") instance=ExtResource("3_1ve5g")]
+position = Vector2(477, 553)
+per = NodePath("../../personagem/markerPEr")
