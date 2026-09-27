@@ -7,18 +7,41 @@ var is_inside_dropable := false
 var body_ref: StaticBody2D = null
 var offset := Vector2.ZERO
 var initial_pos := Vector2.ZERO
+@export var qualCArt : int
+@export var battle_manager: Node3D
 
 @export var sprite: Sprite2D
 @export var per: Marker3D
 
-const BETE_ANI = preload("res://Scenas/modelos/perns/Npc/bete_ani.tscn")
-const EMILIAANI = preload("res://Scenas/modelos/perns/Npc/emiliaani.tscn")
-const GRAFIL = preload("res://Scenas/modelos/perns/Npc/grafil.tscn")
-const HAM_A_NI = preload("res://Scenas/modelos/perns/Npc/ham_a_ni.tscn")
-const HEM_AN = preload("res://Scenas/modelos/perns/Npc/hem_an.tscn")
-const PRISILA = preload("res://Scenas/modelos/perns/Npc/prisila.tscn")
+
+var personagens: Dictionary = {
+
+	"emilia": preload(
+		"res://Scenas/modelos/perns/Npc/emiliaani.tscn"
+	),
+
+	"prisila": preload(
+		"res://Scenas/modelos/perns/Npc/prisila.tscn"
+	),
+
+	"garfiel": preload(
+		"res://Scenas/modelos/perns/Npc/grafil.tscn"
+	),
+
+	"ham": preload(
+		"res://Scenas/modelos/perns/Npc/ham_a_ni.tscn"
+	),
+	"bete": preload(
+		"res://Scenas/modelos/perns/Npc/bete_ani.tscn"
+	),
+
+	"hem": preload(
+		"res://Scenas/modelos/perns/Npc/hem_an.tscn"
+	)
+}
 
 
+@export var carta_inimigo : Node3D
 
 
 
@@ -49,8 +72,21 @@ func _process(_delta: float) -> void:
 			# Está dentro do lugar correto
 			if is_inside_dropable and body_ref != null:
 				tween.tween_property(self,"global_position",body_ref.global_position,0.2)
-				Gobla.PODEJOGAR = false
-				COLOCARPer()
+				if qualCArt == 1:
+					var coisa1 = Gobla.cart1["nome"]
+					COLOCARPer(coisa1)
+					Gobla.PODEJOGAR = false
+					return
+				elif  qualCArt == 2:
+					var coisa2 = Gobla.cart2["nome"]
+					COLOCARPer(coisa2)
+					Gobla.PODEJOGAR = false
+					return
+				elif  qualCArt == 3:
+					var coisa3 = Gobla.cart3["nome"]
+					COLOCARPer(coisa3)
+					Gobla.PODEJOGAR = false
+					return
 
 		# Está fora
 			else:
@@ -91,8 +127,138 @@ func _on_area_2d_mouse_exited() -> void:
 		draggable = false
 		scale = Vector2(1,1)
 
+func COLOCARPer(
+	nome_personagem: String
+) -> void:
 
-func COLOCARPer() -> void:
-	if sprite.texture == load("res://icon.svg"):
-		var PerLo = BETE_ANI.instantiate()
-		per.add_child(PerLo)
+	if sprite.texture != load(
+		"res://icon.svg"
+	):
+
+		return
+
+
+	# ==================================================
+	# VERIFICA PERSONAGEM
+	# ==================================================
+
+	if not personagens.has(
+		nome_personagem
+	):
+
+		print(
+			"PERSONAGEM NÃO EXISTE: ",
+			nome_personagem
+		)
+
+		return
+
+
+	# ==================================================
+	# SALVA PERSONAGEM
+	# ==================================================
+
+	Gobla.personagem_player = nome_personagem
+
+	Gobla.PODEJOGAR = false
+
+
+	print("========================")
+	print("PERSONAGEM ESCOLHIDO")
+	print(nome_personagem)
+	print("========================")
+
+
+	# ==================================================
+	# PEGA CENA
+	# ==================================================
+
+	var cena_personagem = personagens[
+		nome_personagem
+	]
+
+
+	# ==================================================
+	# CRIA PLAYER
+	# ==================================================
+
+	var PerLo = cena_personagem.instantiate()
+
+
+	per.add_child(
+		PerLo
+	)
+
+
+	# ==================================================
+	# PEGA BATTLE MANAGER
+	# ==================================================
+
+	var manager = get_tree().get_first_node_in_group(
+		"battle_manager"
+	)
+
+
+	if manager == null:
+
+		print(
+			"ERRO: BattleManager não encontrado!"
+		)
+
+		return
+
+
+	battle_manager = manager
+
+
+	# ==================================================
+	# CONECTA PLAYER
+	# ==================================================
+
+	battle_manager.carta_player = PerLo
+
+
+	battle_manager.habilidades_player = (
+		PerLo.hud_de_porde
+	)
+
+
+	PerLo.hud_de_porde.habilidadeDoPlayer = (
+		PerLo
+	)
+
+
+	PerLo.hud_de_porde.battle_manager = (
+		battle_manager
+	)
+
+
+	# ==================================================
+	# INIMIGO
+	# ==================================================
+
+	if carta_inimigo != null:
+
+		battle_manager.carta_inimigo = (
+			carta_inimigo
+		)
+
+
+	# ==================================================
+	# PRIMEIRA BATALHA
+	# ==================================================
+
+	if not battle_manager.batalha_iniciada:
+
+		battle_manager.iniciar_batalha()
+
+
+	# ==================================================
+	# NOVO PLAYER DEPOIS DA MORTE
+	# ==================================================
+
+	else:
+
+		battle_manager.continuar_com_novo_player(
+			PerLo
+		)

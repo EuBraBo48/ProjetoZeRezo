@@ -1,8 +1,6 @@
-[gd_scene format=4 uid="uid://c4t1ivb3mhfnj"]
+[gd_scene format=4 uid="uid://cmpg0eqbewyh7"]
 
-[ext_resource type="Texture2D" uid="uid://dr8gnyjfdvy6b" path="res://assents/modelos/Per/beteAni_shaded.png" id="1_qogt7"]
-[ext_resource type="Script" uid="uid://dfe1nfd5r47ka" path="res://Scripts/VIDADENPC.gd" id="1_x88kc"]
-[ext_resource type="PackedScene" uid="uid://b0a027c4bmk8g" path="res://Scenas/hud_de_porde.tscn" id="2_cu0w7"]
+[ext_resource type="Texture2D" uid="uid://dr8gnyjfdvy6b" path="res://assents/modelos/Per/beteAni_shaded.png" id="2_rbj4k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wabvd"]
 resource_name = "model.002"
@@ -11,7 +9,7 @@ albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_operator = 1
-emission_texture = ExtResource("1_qogt7")
+emission_texture = ExtResource("2_rbj4k")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_oa2lp"]
 resource_name = "beteAni_model"
@@ -697,10 +695,8 @@ _data = {
 &"mixamo_com_001": SubResource("Animation_83otn")
 }
 
-[node name="beteAni" type="Node3D" unique_id=862639058 node_paths=PackedStringArray("hud_de_porde")]
+[node name="beteAni" type="Node3D" unique_id=862639058]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
-script = ExtResource("1_x88kc")
-hud_de_porde = NodePath("hudDePorde")
 
 [node name="Armature" type="Node3D" parent="." unique_id=348821397]
 transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
@@ -945,26 +941,3 @@ skeleton = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=379303506]
 libraries/ = SubResource("AnimationLibrary_qw58a")
-
-[node name="hudDePorde" parent="." unique_id=1331471706 node_paths=PackedStringArray("habilidadeDoPlayer", "barra_vida") instance=ExtResource("2_cu0w7")]
-visible = false
-offset_left = -6.0
-offset_top = -21.0
-offset_right = -6.0
-offset_bottom = -21.0
-habilidadeDoPlayer = NodePath("..")
-barra_vida = NodePath("../ProgressBar")
-
-[node name="Button" type="Button" parent="." unique_id=1420522651]
-offset_left = 580.0
-offset_top = 221.0
-offset_right = 687.0
-offset_bottom = 402.0
-
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1075797736]
-offset_left = 971.0
-offset_top = 613.0
-offset_right = 1150.0
-offset_bottom = 640.0
-
-[connection signal="pressed" from="Button" to="hudDePorde" method="_on_button_pressed"]

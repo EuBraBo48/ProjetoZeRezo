@@ -32,18 +32,23 @@ var personagens = {
 func _ready() -> void:
 	Sorteio()
 
-
 func Sorteio() -> void:
-	var nomes1 = personagens.keys()
-	var car1 = nomes1.pick_random()
+
+	# Cria uma lista com todos os personagens
+	var disponiveis = personagens.keys().duplicate()
+	var car1 = disponiveis.pick_random()
+	disponiveis.erase(car1)
 	cart_1.texture = load(personagens[car1]["normal"])
-	Gobla.cart1 = personagens[car1]
-	var nomes2 = personagens.keys()
-	var car2 = nomes2.pick_random()
+
+	Gobla.cart1 = {"nome": car1,"normal": personagens[car1]["normal"]}
+
+	var car2 = disponiveis.pick_random()
+	disponiveis.erase(car2)
 	cart_2.texture = load(personagens[car2]["normal"])
-	Gobla.cart2 = personagens[car2]
-	var nomes3 = personagens.keys()
-	var car3 = nomes3.pick_random()
+	Gobla.cart2 = {"nome": car2,"normal": personagens[car2]["normal"]}
+
+	var car3 = disponiveis.pick_random()
+	disponiveis.erase(car3)
 	cart_3.texture = load(personagens[car3]["normal"])
-	Gobla.cart3 = personagens[car3]
+	Gobla.cart3 = {"nome": car3,"normal": personagens[car3]["normal"]}
 	get_tree().change_scene_to_file("res://Scenas/batalha.tscn")
