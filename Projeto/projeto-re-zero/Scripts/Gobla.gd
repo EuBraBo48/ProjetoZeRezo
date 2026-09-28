@@ -12,8 +12,13 @@ var carta_sendo_arrastada: Node2D = null
 
 var Vitoria := 0.0
 var Mortes := 0.0
-var vidaDaCart :int = 0
-var DanoDaCart :int = 0
+var PontoDePar := 0
+var vidaDaCart1 :int = 0
+var DanoDaCart1 :int = 0
+var vidaDaCart2 :int = 0
+var DanoDaCart2 :int = 0
+var vidaDaCart3 :int = 0
+var DanoDaCart3 :int = 0
 
 var InimeDaCena = preload("res://Scenas/modelos/perns/bruxa.tscn")
 

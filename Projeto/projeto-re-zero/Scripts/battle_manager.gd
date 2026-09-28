@@ -54,7 +54,9 @@ var round_atual := 1
 
 var resultado_final: String = ""
 
-signal batalha_finalizada(vencedor: String)
+signal batalha_finalizada(
+	vencedor: String
+)
 
 
 # ==================================================
@@ -63,7 +65,9 @@ signal batalha_finalizada(vencedor: String)
 
 func _ready() -> void:
 
-	print("BattleManager pronto.")
+	print(
+		"BattleManager pronto."
+	)
 
 	atualizar_label_round()
 
@@ -73,7 +77,7 @@ func _ready() -> void:
 
 
 # ==================================================
-# LABEL ROUND
+# ROUND
 # ==================================================
 
 func atualizar_label_round() -> void:
@@ -81,11 +85,14 @@ func atualizar_label_round() -> void:
 	if label_round == null:
 		return
 
-	label_round.text = "Round " + str(round_atual)
+	label_round.text = (
+		"Round "
+		+ str(round_atual)
+	)
 
 
 # ==================================================
-# LABEL PLAYER
+# PLAYER
 # ==================================================
 
 func mostrar_vez_player() -> void:
@@ -97,7 +104,7 @@ func mostrar_vez_player() -> void:
 
 
 # ==================================================
-# LABEL IA
+# IA
 # ==================================================
 
 func mostrar_vez_ia() -> void:
@@ -120,21 +127,27 @@ func iniciar_batalha() -> void:
 
 	if carta_player == null:
 
-		print("Ainda não existe carta do PLAYER!")
+		print(
+			"Ainda não existe carta do PLAYER!"
+		)
 
 		return
 
 
 	if carta_inimigo == null:
 
-		print("Ainda não existe carta do INIMIGO!")
+		print(
+			"Ainda não existe carta do INIMIGO!"
+		)
 
 		return
 
 
 	if habilidades_player == null:
 
-		print("Ainda não existe HUD do PLAYER!")
+		print(
+			"Ainda não existe HUD do PLAYER!"
+		)
 
 		return
 
@@ -161,7 +174,7 @@ func iniciar_batalha() -> void:
 
 
 # ==================================================
-# CONTINUAR COM NOVO PLAYER
+# NOVO PLAYER
 # ==================================================
 
 func continuar_com_novo_player(
@@ -175,16 +188,13 @@ func continuar_com_novo_player(
 	turno_atual = Turno.FIM
 
 
-	print("========================")
-	print("NOVO PLAYER ENTROU")
-	print("ROUND: ", round_atual)
-	print("========================")
+	if is_instance_valid(
+		carta_player
+	):
 
-
-	# Garante que o novo personagem começa parado
-	if is_instance_valid(carta_player):
-
-		if carta_player.has_method("tocar_idle"):
+		if carta_player.has_method(
+			"tocar_idle"
+		):
 
 			carta_player.tocar_idle()
 
@@ -207,11 +217,17 @@ func iniciar_turno_player() -> void:
 		return
 
 
-	if not is_instance_valid(carta_player):
+	if not is_instance_valid(
+		carta_player
+	):
+
 		return
 
 
-	if not is_instance_valid(carta_inimigo):
+	if not is_instance_valid(
+		carta_inimigo
+	):
+
 		return
 
 
@@ -244,7 +260,10 @@ func jogador_usou_habilidade(
 		return
 
 
-	if not is_instance_valid(carta_player):
+	if not is_instance_valid(
+		carta_player
+	):
+
 		return
 
 
@@ -257,7 +276,9 @@ func jogador_usou_habilidade(
 	habilidades_player.bloquear_jogador()
 
 
-	await atacar_player(habilidade)
+	await atacar_player(
+		habilidade
+	)
 
 
 	if await verificar_morte():
@@ -280,7 +301,9 @@ func atacar_player(
 	habilidade: Dictionary
 ) -> void:
 
-	print("PLAYER ATACANDO!")
+	print(
+		"PLAYER ATACANDO!"
+	)
 
 
 	if carta_player.animation_player:
@@ -288,7 +311,10 @@ func atacar_player(
 		await carta_player.atacar_animacao()
 
 
-	var dano = habilidade["dano"]
+	# O dano já vem com o PowerDMG aplicado
+	var dano = habilidade[
+		"dano"
+	]
 
 
 	print(
@@ -296,13 +322,16 @@ func atacar_player(
 		habilidade["nome"]
 	)
 
+
 	print(
 		"PLAYER CAUSOU: ",
 		dano
 	)
 
 
-	carta_inimigo.receber_dano(dano)
+	carta_inimigo.receber_dano(
+		dano
+	)
 
 
 	await get_tree().create_timer(
@@ -320,11 +349,17 @@ func iniciar_turno_ia() -> void:
 		return
 
 
-	if not is_instance_valid(carta_player):
+	if not is_instance_valid(
+		carta_player
+	):
+
 		return
 
 
-	if not is_instance_valid(carta_inimigo):
+	if not is_instance_valid(
+		carta_inimigo
+	):
+
 		return
 
 
@@ -344,11 +379,12 @@ func iniciar_turno_ia() -> void:
 	).timeout
 
 
-	# Pega uma habilidade da CARTA ATUAL da IA
 	var habilidade = await carta_inimigo.jogar()
 
 
-	await atacar_ia(habilidade)
+	await atacar_ia(
+		habilidade
+	)
 
 
 	if await verificar_morte():
@@ -380,7 +416,9 @@ func atacar_ia(
 	await carta_inimigo.atacar()
 
 
-	var dano = habilidade["dano"]
+	var dano = habilidade[
+		"dano"
+	]
 
 
 	print(
@@ -389,7 +427,9 @@ func atacar_ia(
 	)
 
 
-	carta_player.receber_dano(dano)
+	carta_player.receber_dano(
+		dano
+	)
 
 
 	await get_tree().create_timer(
@@ -413,24 +453,6 @@ func verificar_morte() -> bool:
 		vitorias_player += 1
 
 
-		print("========================")
-		print("INIMIGO MORREU!")
-		print("PLAYER GANHOU O ROUND!")
-		print(
-			"PLAYER: ",
-			vitorias_player
-		)
-		print(
-			"IA: ",
-			vitorias_ia
-		)
-		print("========================")
-
-
-		# ==================================================
-		# SE FOI O 3º ROUND
-		# ==================================================
-
 		if round_atual >= 3:
 
 			finalizar_partida()
@@ -438,7 +460,6 @@ func verificar_morte() -> bool:
 			return true
 
 
-		# Próximo round
 		round_atual += 1
 
 		atualizar_label_round()
@@ -449,7 +470,6 @@ func verificar_morte() -> bool:
 		).timeout
 
 
-		# Novo inimigo
 		carta_inimigo.trocar_personagem()
 
 
@@ -467,21 +487,8 @@ func verificar_morte() -> bool:
 	if carta_player.morreu():
 
 		vitorias_ia += 1
+
 		Gobla.Mortes += 1
-
-
-		print("========================")
-		print("PLAYER MORREU!")
-		print("IA GANHOU O ROUND!")
-		print(
-			"PLAYER: ",
-			vitorias_player
-		)
-		print(
-			"IA: ",
-			vitorias_ia
-		)
-		print("========================")
 
 
 		if is_instance_valid(
@@ -491,13 +498,8 @@ func verificar_morte() -> bool:
 			habilidades_player.bloquear_jogador()
 
 
-		# Libera escolha de novo personagem
 		Gobla.PODEJOGAR = true
 
-
-		# ==================================================
-		# SE FOI O 3º ROUND
-		# ==================================================
 
 		if round_atual >= 3:
 
@@ -510,19 +512,16 @@ func verificar_morte() -> bool:
 
 			carta_player = null
 
-
 			finalizar_partida()
 
 			return true
 
 
-		# Próximo round
 		round_atual += 1
 
 		atualizar_label_round()
 
 
-		# Remove Player morto
 		if is_instance_valid(
 			carta_player
 		):
@@ -533,7 +532,6 @@ func verificar_morte() -> bool:
 		carta_player = null
 
 
-		# Pausa até escolher outro
 		batalha_terminou = true
 
 		turno_atual = Turno.FIM
@@ -544,6 +542,7 @@ func verificar_morte() -> bool:
 
 	return false
 
+
 # ==================================================
 # FINALIZAR PARTIDA
 # ==================================================
@@ -551,18 +550,29 @@ func verificar_morte() -> bool:
 func finalizar_partida() -> void:
 
 	batalha_terminou = true
+
 	turno_atual = Turno.FIM
+
 
 	print("========================")
 	print("     FIM DA PARTIDA")
 	print("========================")
 
-	print("ROUNDS DO PLAYER: ", vitorias_player)
-	print("ROUNDS DA IA: ", vitorias_ia)
+
+	print(
+		"ROUNDS DO PLAYER: ",
+		vitorias_player
+	)
+
+
+	print(
+		"ROUNDS DA IA: ",
+		vitorias_ia
+	)
 
 
 	# ==================================================
-	# DESCOBRE O VENCEDOR
+	# VENCEDOR
 	# ==================================================
 
 	if vitorias_player > vitorias_ia:
@@ -579,7 +589,7 @@ func finalizar_partida() -> void:
 
 
 	# ==================================================
-	# MOSTRA NO LABEL
+	# LABEL
 	# ==================================================
 
 	if label_vez:
@@ -587,7 +597,9 @@ func finalizar_partida() -> void:
 		if resultado_final == "PLAYER":
 
 			label_vez.text = "VOCÊ VENCEU!"
+
 			Gobla.Vitoria += 1
+			Gobla.PontoDePar += 30
 
 		elif resultado_final == "IA":
 
@@ -599,27 +611,18 @@ func finalizar_partida() -> void:
 
 
 	# ==================================================
-	# PRINT
+	# SINAL
 	# ==================================================
 
-	print(
-		"VENCEDOR: ",
-		resultado_final
-	)
-
-	print("========================")
-
-
-	Gobla.PODEJOGAR = true
-
-
-	# Sinal para usar futuramente
 	batalha_finalizada.emit(
 		resultado_final
 	)
 
 
-	# Função que você pode modificar depois
+	# ==================================================
+	# FUNÇÃO FUTURA
+	# ==================================================
+
 	funcao_futura_fim_da_batalha(
 		resultado_final
 	)
@@ -629,13 +632,8 @@ func finalizar_partida() -> void:
 # FUNÇÃO FUTURA
 # ==================================================
 
-func funcao_futura_fim_da_batalha(vencedor: String) -> void:
-
-	print(
-		"FUNÇÃO FUTURA - VENCEDOR: ",
-		vencedor
-	)
-
-	# COLOQUE SUA LÓGICA AQUI NO FUTURO
+func funcao_futura_fim_da_batalha(
+	vencedor: String
+) -> void:
 
 	pass

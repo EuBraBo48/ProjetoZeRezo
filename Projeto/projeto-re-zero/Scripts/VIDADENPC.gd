@@ -11,149 +11,74 @@ extends Node3D
 # ==================================================
 # CARTAS DOS PERSONAGENS
 # ==================================================
-
 var cartas: Dictionary = {
 
 	"emilia": {
-
 		"nome": "Emilia",
-
 		"vida": 100,
-
 		"vida_maxima": 100,
-
 		"habilidades": [
-
-			{
-				"nome": "Gelo",
-				"dano": 15
-			},
-
-			{
-				"nome": "Barreira",
-				"dano": 0
-			},
-
-			{
-				"nome": "Magia de Gelo",
-				"dano": 30
-			}
+			{"nome": "Gelo", "dano": 15},
+			{"nome": "Barreira", "dano": 10},
+			{"nome": "Magia de Gelo", "dano": 30}
 		]
 	},
-
 
 	"prisila": {
-
 		"nome": "Prisila",
-
 		"vida": 120,
-
 		"vida_maxima": 120,
-
 		"habilidades": [
-
-			{
-				"nome": "Corte",
-				"dano": 20
-			},
-
-			{
-				"nome": "Ataque Poderoso",
-				"dano": 35
-			},
-
-			{
-				"nome": "Especial",
-				"dano": 50
-			}
+			{"nome": "Corte", "dano": 20},
+			{"nome": "Ataque Poderoso", "dano": 35},
+			{"nome": "Especial", "dano": 50}
 		]
 	},
-
 
 	"grafil": {
-
 		"nome": "Garfiel",
-
 		"vida": 130,
-
 		"vida_maxima": 130,
-
 		"habilidades": [
-
-			{
-				"nome": "Soco",
-				"dano": 20
-			},
-
-			{
-				"nome": "Soco Forte",
-				"dano": 35
-			},
-
-			{
-				"nome": "Especial",
-				"dano": 50
-			}
+			{"nome": "Soco", "dano": 20},
+			{"nome": "Soco Forte", "dano": 35},
+			{"nome": "Especial", "dano": 50}
 		]
 	},
-
 
 	"ham": {
-
 		"nome": "Ham",
-
 		"vida": 140,
-
 		"vida_maxima": 140,
-
 		"habilidades": [
-
-			{
-				"nome": "Mordida",
-				"dano": 25
-			},
-
-			{
-				"nome": "Investida",
-				"dano": 40
-			},
-
-			{
-				"nome": "Especial",
-				"dano": 55
-			}
+			{"nome": "Mordida", "dano": 25},
+			{"nome": "Investida", "dano": 40},
+			{"nome": "Especial", "dano": 55}
 		]
 	},
 
-
 	"hem": {
-
 		"nome": "Hem",
-
 		"vida": 110,
-
 		"vida_maxima": 110,
-
 		"habilidades": [
+			{"nome": "Ataque", "dano": 15},
+			{"nome": "Ataque Forte", "dano": 30},
+			{"nome": "Especial", "dano": 45}
+		]
+	},
 
-			{
-				"nome": "Ataque",
-				"dano": 15
-			},
-
-			{
-				"nome": "Ataque Forte",
-				"dano": 30
-			},
-
-			{
-				"nome": "Especial",
-				"dano": 45
-			}
+	"bete": {
+		"nome": "Bete",
+		"vida": 90,
+		"vida_maxima": 90,
+		"habilidades": [
+			{"nome": "Magia", "dano": 20},
+			{"nome": "Explosão", "dano": 35},
+			{"nome": "Especial", "dano": 50}
 		]
 	}
 }
-
 
 # ==================================================
 # CARTA ATUAL DO PLAYER
@@ -185,14 +110,17 @@ signal vida_mudou(
 
 func _ready() -> void:
 
-	# Pega o personagem escolhido na Gobla
+	# ==================================================
+	# PERSONAGEM ESCOLHIDO
+	# ==================================================
+
 	var nome_personagem: String = (
 		Gobla.personagem_player
 	)
 
 
 	# ==================================================
-	# PEGA A CARTA DO PERSONAGEM
+	# PEGA A CARTA
 	# ==================================================
 
 	if (
@@ -204,25 +132,52 @@ func _ready() -> void:
 			nome_personagem
 		].duplicate(true)
 
-
 	else:
 
-		# Segurança
 		carta = cartas[
 			"emilia"
 		].duplicate(true)
 
 
 	# ==================================================
-	# NOVO PERSONAGEM COMEÇA COM VIDA CHEIA
+	# APLICA POWER HP
 	# ==================================================
 
-	carta["vida"] = carta[
-		"vida_maxima"
-	]
+	var nivel_vida = get_nivel_vida()
+
+	var bonus_vida = bonus_por_nivel(
+		nivel_vida
+	)
+
+	carta["vida_maxima"] += bonus_vida
+
+	carta["vida"] = carta["vida_maxima"]
 
 
-	# Salva a carta atual
+	# ==================================================
+	# APLICA POWER DMG
+	# ==================================================
+
+	var nivel_dano = get_nivel_dano()
+
+	var bonus_dano = bonus_por_nivel(
+		nivel_dano
+	)
+
+
+	for habilidade in carta["habilidades"]:
+
+		# Não transforma habilidade de dano 0
+		# em ataque só por causa do upgrade
+		if habilidade["dano"] > 0:
+
+			habilidade["dano"] += bonus_dano
+
+
+	# ==================================================
+	# SALVA A CARTA ATUAL
+	# ==================================================
+
 	Gobla.carta_player = carta
 
 
@@ -231,16 +186,6 @@ func _ready() -> void:
 	print("Personagem: ", carta["nome"])
 	print("Vida: ", carta["vida"])
 	print("========================")
-
-	print("HABILIDADES DO PLAYER:")
-
-	for habilidade in carta["habilidades"]:
-
-		print(
-			habilidade["nome"],
-			" - Dano: ",
-			habilidade["dano"]
-		)
 
 
 	# ==================================================
@@ -288,10 +233,10 @@ func tocar_idle() -> void:
 		return
 
 
-	# mixamo_com = PARADO
 	animation_player.stop()
 
 
+	# mixamo_com = parado
 	if animation_player.has_animation(
 		"mixamo_com"
 	):
@@ -316,11 +261,10 @@ func atacar_animacao() -> void:
 		return
 
 
-	# Para o Idle
 	animation_player.stop()
 
 
-	# mixamo_com_001 = ATAQUE
+	# mixamo_com_001 = ataque
 	if animation_player.has_animation(
 		"mixamo_com_001"
 	):
@@ -329,13 +273,11 @@ func atacar_animacao() -> void:
 			"mixamo_com_001"
 		)
 
-
 		await get_tree().create_timer(
 			2.4
 		).timeout
 
 
-	# Volta para Idle
 	tocar_idle()
 
 
@@ -349,18 +291,15 @@ func receber_dano(
 
 	carta["vida"] -= dano
 
-
 	carta["vida"] = max(
 		carta["vida"],
 		0
 	)
 
 
-	# Atualiza Gobla
 	Gobla.carta_player = carta
 
 
-	# Atualiza ProgressBar
 	vida_mudou.emit(
 		carta["vida"],
 		carta["vida_maxima"]
@@ -371,14 +310,12 @@ func receber_dano(
 	print("PLAYER RECEBEU DANO")
 	print("Personagem: ", carta["nome"])
 	print("Dano: ", dano)
-
 	print(
 		"Vida: ",
 		carta["vida"],
 		"/",
 		carta["vida_maxima"]
 	)
-
 	print("========================")
 
 
@@ -411,7 +348,97 @@ func resetar_vida() -> void:
 	)
 
 
-	print(
-		"Vida PLAYER resetada para ",
-		carta["vida"]
-	)
+# ==================================================
+# PEGAR NÍVEL DE VIDA
+# ==================================================
+
+func get_nivel_vida() -> int:
+
+	var nome = Gobla.personagem_player
+
+
+	if (
+		Gobla.cart1.has("nome")
+		and Gobla.cart1["nome"] == nome
+	):
+
+		return Gobla.vidaDaCart1
+
+
+	if (
+		Gobla.cart2.has("nome")
+		and Gobla.cart2["nome"] == nome
+	):
+
+		return Gobla.vidaDaCart2
+
+
+	if (
+		Gobla.cart3.has("nome")
+		and Gobla.cart3["nome"] == nome
+	):
+
+		return Gobla.vidaDaCart3
+
+
+	return 0
+
+
+# ==================================================
+# PEGAR NÍVEL DE DANO
+# ==================================================
+
+func get_nivel_dano() -> int:
+
+	var nome = Gobla.personagem_player
+
+
+	if (
+		Gobla.cart1.has("nome")
+		and Gobla.cart1["nome"] == nome
+	):
+
+		return Gobla.DanoDaCart1
+
+
+	if (
+		Gobla.cart2.has("nome")
+		and Gobla.cart2["nome"] == nome
+	):
+
+		return Gobla.DanoDaCart2
+
+
+	if (
+		Gobla.cart3.has("nome")
+		and Gobla.cart3["nome"] == nome
+	):
+
+		return Gobla.DanoDaCart3
+
+
+	return 0
+
+
+# ==================================================
+# BÔNUS POR NÍVEL
+# ==================================================
+
+func bonus_por_nivel(
+	nivel: int
+) -> int:
+
+	if nivel == 1:
+
+		return 20
+
+	elif nivel == 2:
+
+		return 30
+
+	elif nivel >= 3:
+
+		return 40
+
+
+	return 0

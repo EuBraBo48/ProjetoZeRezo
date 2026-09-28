@@ -5,8 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bbkejtc0hschc" path="res://assents/card.png" id="2_j3oic"]
 [ext_resource type="Texture2D" uid="uid://bbsvau8wtbfd7" path="res://assents/Sprite-0002.png" id="4_082qq"]
 [ext_resource type="Texture2D" uid="uid://3vhf3wq8rr8d" path="res://assents/w.png" id="5_3tebt"]
+[ext_resource type="PackedScene" uid="uid://dbmi7lvr5hocq" path="res://Scenas/cartDePorde.tscn" id="6_ply4t"]
 
-[node name="hud" type="Control" unique_id=346732960 node_paths=PackedStringArray("progress_bar", "texture_progress_bar")]
+[node name="hud" type="Control" unique_id=346732960 node_paths=PackedStringArray("progress_bar", "texture_progress_bar", "Pontos", "par_visual")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,6 +18,8 @@ grow_vertical = 2
 script = ExtResource("1_icnks")
 progress_bar = NodePath("ProgressBar")
 texture_progress_bar = NodePath("TextureProgressBar")
+Pontos = NodePath("ParVisual/Pontos")
+par_visual = NodePath("ParVisual")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=30832292]
 layout_mode = 0
@@ -48,6 +52,54 @@ scale = Vector2(3, 3)
 texture = ExtResource("2_j3oic")
 
 [node name="ParVisual" type="Control" parent="." unique_id=1310147532]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1151.0
+offset_bottom = 649.0
+
+[node name="ColorRect" type="ColorRect" parent="ParVisual" unique_id=1728043718]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 149.0
+offset_right = 912.0
+offset_bottom = 591.0
+
+[node name="ColorRect2" type="ColorRect" parent="ParVisual" unique_id=1807329488]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 180.0
+offset_right = 878.0
+offset_bottom = 555.0
+color = Color(0.37036446, 0.3703645, 0.37036446, 1)
+
+[node name="Carts" type="Control" parent="ParVisual" unique_id=1988428955]
+anchors_preset = 0
+
+[node name="Sprite2D4" parent="ParVisual/Carts" unique_id=246107626 instance=ExtResource("6_ply4t")]
+position = Vector2(570, 412)
+qualCart = 1
+
+[node name="Sprite2D3" parent="ParVisual/Carts" unique_id=1142830009 instance=ExtResource("6_ply4t")]
+position = Vector2(417, 408.00006)
+qualCart = 2
+
+[node name="Sprite2D5" parent="ParVisual/Carts" unique_id=1428192601 instance=ExtResource("6_ply4t")]
+position = Vector2(273, 404)
+qualCart = 3
+
+[node name="Label" type="Label" parent="ParVisual" unique_id=1296526433]
+layout_mode = 0
+offset_left = 197.0
+offset_top = 186.0
+offset_right = 369.0
+offset_bottom = 217.0
+text = "luga das HABILIDADES"
+
+[node name="Pontos" type="Label" parent="ParVisual" unique_id=632493848]
+layout_mode = 0
+offset_left = 751.0
+offset_top = 185.0
+offset_right = 923.0
+offset_bottom = 234.0
+text = "seu pontos:
+00"

@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dbmi7lvr5hocq"]
+
+[ext_resource type="Texture2D" uid="uid://d8q6omgxausj" path="res://icon.svg" id="1_65e4h"]
+[ext_resource type="Script" uid="uid://b3lasje2unef6" path="res://Scripts/cart_de_porde.gd" id="2_7h3tt"]
+
+[node name="Sprite2D3" type="Sprite2D" unique_id=1142830009 node_paths=PackedStringArray("color_rect", "sprite_2d_3", "nome", "UpVi", "UpPo", "up_po", "up_vi")]
+scale = Vector2(1, 1.7734373)
+texture = ExtResource("1_65e4h")
+script = ExtResource("2_7h3tt")
+color_rect = NodePath("ColorRect")
+sprite_2d_3 = NodePath(".")
+nome = NodePath("ColorRect/nome")
+UpVi = NodePath("ColorRect/upVi")
+UpPo = NodePath("ColorRect/UpPo")
+up_po = NodePath("ColorRect/UpPo/upPO")
+up_vi = NodePath("ColorRect/upVi/upVi")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=780549993]
+offset_left = 68.0
+offset_top = -67.10133
+offset_right = 251.0
+offset_bottom = 64.845825
+color = Color(0, 0, 0, 1)
+
+[node name="nome" type="Label" parent="ColorRect" unique_id=993807469]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.691626
+offset_right = 172.0
+offset_bottom = 21.308374
+text = "nome: emilia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upVi" type="Label" parent="ColorRect" unique_id=859525286]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 19.171814
+offset_right = 127.0
+offset_bottom = 42.171814
+text = "up Vida: nivel 0"
+
+[node name="upVi" type="Button" parent="ColorRect/upVi" unique_id=434664781]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 19.735687
+offset_right = 101.0
+offset_bottom = 50.735687
+text = "10"
+
+[node name="UpPo" type="Label" parent="ColorRect" unique_id=2053781794]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 70.4846
+offset_right = 145.0
+offset_bottom = 93.4846
+text = "up attacks: nivel 0"
+
+[node name="upPO" type="Button" parent="ColorRect/UpPo" unique_id=1079243628]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 20.299566
+offset_right = 105.0
+offset_bottom = 51.29957
+text = "15"
+
+[node name="Button" type="Button" parent="." unique_id=1414520245]
+offset_left = -68.0
+offset_top = -62.59032
+offset_right = 66.0
+offset_bottom = 66.53746
+
+[connection signal="pressed" from="ColorRect/upVi/upVi" to="." method="_on_up_vi_pressed"]
+[connection signal="pressed" from="ColorRect/UpPo/upPO" to="." method="_on_up_po_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
