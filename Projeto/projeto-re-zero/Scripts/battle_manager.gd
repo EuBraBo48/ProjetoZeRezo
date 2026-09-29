@@ -632,8 +632,6 @@ func finalizar_partida() -> void:
 # FUNÇÃO FUTURA
 # ==================================================
 
-func funcao_futura_fim_da_batalha(
-	vencedor: String
-) -> void:
-
-	pass
+func funcao_futura_fim_da_batalha(vencedor: String) -> void:
+	get_tree().change_scene_to_file("res://Scenas/main.tscn")
+	

@@ -51,4 +51,4 @@ func Sorteio() -> void:
 	disponiveis.erase(car3)
 	cart_3.texture = load(personagens[car3]["normal"])
 	Gobla.cart3 = {"nome": car3,"normal": personagens[car3]["normal"]}
-	get_tree().change_scene_to_file("res://Scenas/batalha.tscn")
+	get_tree().change_scene_to_file("res://Scenas/main.tscn")
