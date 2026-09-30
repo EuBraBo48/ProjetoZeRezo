@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dbmi7lvr5hocq"]
 
-[ext_resource type="Texture2D" uid="uid://d8q6omgxausj" path="res://icon.svg" id="1_65e4h"]
+[ext_resource type="Texture2D" uid="uid://c82eowtt15imi" path="res://assents/cartes/cartGufiel.png" id="1_7h3tt"]
 [ext_resource type="Script" uid="uid://b3lasje2unef6" path="res://Scripts/cart_de_porde.gd" id="2_7h3tt"]
 
-[node name="Sprite2D3" type="Sprite2D" unique_id=1142830009 node_paths=PackedStringArray("color_rect", "sprite_2d_3", "nome", "UpVi", "UpPo", "up_po", "up_vi")]
-scale = Vector2(1, 1.7734373)
-texture = ExtResource("1_65e4h")
+[node name="Sprite2D3" type="Sprite2D" unique_id=1001561613 node_paths=PackedStringArray("color_rect", "sprite_2d_3", "nome", "UpVi", "UpPo", "up_po", "up_vi")]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_7h3tt")
 script = ExtResource("2_7h3tt")
 color_rect = NodePath("ColorRect")
 sprite_2d_3 = NodePath(".")
@@ -16,10 +16,11 @@ up_po = NodePath("ColorRect/UpPo/upPO")
 up_vi = NodePath("ColorRect/upVi/upVi")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=780549993]
-offset_left = 68.0
-offset_top = -67.10133
-offset_right = 251.0
-offset_bottom = 64.845825
+visible = false
+offset_left = 107.0
+offset_top = -125.0
+offset_right = 290.0
+offset_bottom = 105.0
 color = Color(0, 0, 0, 1)
 
 [node name="nome" type="Label" parent="ColorRect" unique_id=993807469]
@@ -65,10 +66,10 @@ offset_bottom = 51.29957
 text = "15"
 
 [node name="Button" type="Button" parent="." unique_id=1414520245]
-offset_left = -68.0
-offset_top = -62.59032
-offset_right = 66.0
-offset_bottom = 66.53746
+offset_left = -154.99998
+offset_top = -210.0
+offset_right = 146.66667
+offset_bottom = 213.33334
 
 [connection signal="pressed" from="ColorRect/upVi/upVi" to="." method="_on_up_vi_pressed"]
 [connection signal="pressed" from="ColorRect/UpPo/upPO" to="." method="_on_up_po_pressed"]

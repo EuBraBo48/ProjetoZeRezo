@@ -76,15 +76,15 @@ color = Color(0.37036446, 0.3703645, 0.37036446, 1)
 anchors_preset = 0
 
 [node name="Sprite2D4" parent="ParVisual/Carts" unique_id=246107626 instance=ExtResource("6_ply4t")]
-position = Vector2(570, 412)
+position = Vector2(753, 400)
 qualCart = 1
 
 [node name="Sprite2D3" parent="ParVisual/Carts" unique_id=1142830009 instance=ExtResource("6_ply4t")]
-position = Vector2(417, 408.00006)
+position = Vector2(545, 397)
 qualCart = 2
 
 [node name="Sprite2D5" parent="ParVisual/Carts" unique_id=1428192601 instance=ExtResource("6_ply4t")]
-position = Vector2(273, 404)
+position = Vector2(307, 394)
 qualCart = 3
 
 [node name="Label" type="Label" parent="ParVisual" unique_id=1296526433]

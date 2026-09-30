@@ -118,26 +118,16 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 func _on_area_2d_mouse_entered() -> void:
 	if Gobla.carta_sendo_arrastada == null:
 		draggable = true
-		scale = Vector2(1.05, 1.05)
+		scale = Vector2(0.6, 0.6)
 
 
 
 func _on_area_2d_mouse_exited() -> void:
 	if not is_dragging:
 		draggable = false
-		scale = Vector2(1,1)
+		scale = Vector2(0.5,0.5)
 
-func COLOCARPer(
-	nome_personagem: String
-) -> void:
-
-	if sprite.texture != load(
-		"res://icon.svg"
-	):
-
-		return
-
-
+func COLOCARPer(nome_personagem: String) -> void:
 	# ==================================================
 	# VERIFICA PERSONAGEM
 	# ==================================================

@@ -485,12 +485,9 @@ func verificar_morte() -> bool:
 	# ==================================================
 
 	if carta_player.morreu():
-
+		Gobla.Mortes += 20
 		vitorias_ia += 1
-
-		Gobla.Mortes += 1
-
-
+		
 		if is_instance_valid(
 			habilidades_player
 		):
@@ -511,7 +508,6 @@ func verificar_morte() -> bool:
 
 
 			carta_player = null
-
 			finalizar_partida()
 
 			return true
@@ -633,5 +629,6 @@ func finalizar_partida() -> void:
 # ==================================================
 
 func funcao_futura_fim_da_batalha(vencedor: String) -> void:
+	Gobla.PODEJOGAR = true
 	get_tree().change_scene_to_file("res://Scenas/main.tscn")
 	

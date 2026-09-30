@@ -5,6 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://btvaqtftkvqh6" path="res://Scenas/player.tscn" id="2_ue5qb"]
 [ext_resource type="PackedScene" uid="uid://dn1i2mwab7tnv" path="res://Scenas/modelos/perns/peteguese.tscn" id="3_1gl61"]
 [ext_resource type="PackedScene" uid="uid://dm33ptgmdhjve" path="res://Scenas/hud.tscn" id="3_urld1"]
+[ext_resource type="PackedScene" uid="uid://cnrpnnuw626id" path="res://Scenas/modelos/perns/equidina.tscn" id="4_af5hs"]
+[ext_resource type="PackedScene" uid="uid://jwuo4metcus0" path="res://Scenas/modelos/perns/bruxa.tscn" id="4_drlub"]
+[ext_resource type="PackedScene" uid="uid://bwtbbukhv8wt8" path="res://Scenas/modelos/perns/relugos.tscn" id="4_gug6g"]
+[ext_resource type="PackedScene" uid="uid://b3ajyfi67n8gy" path="res://Scenas/modelos/perns/esza.tscn" id="4_k15po"]
 [ext_resource type="Script" uid="uid://bmnq6vafbwtfp" path="res://Scripts/PortaoParaBata.gd" id="4_s1m4t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ue5qb"]
@@ -19,6 +23,18 @@ sky_material = SubResource("ProceduralSkyMaterial_ue5qb")
 [sub_resource type="Environment" id="Environment_an1xy"]
 background_mode = 2
 sky = SubResource("Sky_urld1")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3gngh"]
+radius = 1.0935745
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_d0u6y"]
+radius = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_57qmd"]
+radius = 1.1782916
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yf5fn"]
+radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 radius = 1.3213562
@@ -43,6 +59,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2086439, 18.01101, -4.0520
 
 [node name="inimigos" type="Node3D" parent="." unique_id=714225592]
 
+[node name="bruxa" parent="inimigos" unique_id=1340049128 node_paths=PackedStringArray("player") instance=ExtResource("4_drlub")]
+transform = Transform3D(-0.4999999, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.4999999, -12.485371, 73.658455, -19.650103)
+script = ExtResource("4_s1m4t")
+CAminho = ExtResource("4_drlub")
+player = NodePath("../../player")
+
+[node name="Area3D" type="Area3D" parent="inimigos/bruxa" unique_id=1816703600]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inimigos/bruxa/Area3D" unique_id=2096016075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47737122, 0)
+shape = SubResource("SphereShape3D_3gngh")
+
+[node name="esza" parent="inimigos" unique_id=1235158162 node_paths=PackedStringArray("player") instance=ExtResource("4_k15po")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5792723, 55.27765, -27.605986)
+script = ExtResource("4_s1m4t")
+CAminho = ExtResource("4_k15po")
+player = NodePath("../../player")
+
+[node name="Area3D" type="Area3D" parent="inimigos/esza" unique_id=180135881]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inimigos/esza/Area3D" unique_id=405455443]
+shape = SubResource("SphereShape3D_d0u6y")
+
+[node name="equidina" parent="inimigos" unique_id=50589587 node_paths=PackedStringArray("player") instance=ExtResource("4_af5hs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54187965, 41.92022, -25.775307)
+script = ExtResource("4_s1m4t")
+CAminho = ExtResource("4_af5hs")
+player = NodePath("../../player")
+
+[node name="Area3D" type="Area3D" parent="inimigos/equidina" unique_id=556446460]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inimigos/equidina/Area3D" unique_id=484749816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_57qmd")
+
+[node name="relugos" parent="inimigos" unique_id=393715837 node_paths=PackedStringArray("player") instance=ExtResource("4_gug6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.763859, 29.356636, -26.801582)
+script = ExtResource("4_s1m4t")
+CAminho = ExtResource("4_gug6g")
+player = NodePath("../../player")
+
+[node name="Area3D" type="Area3D" parent="inimigos/relugos" unique_id=514994232]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="inimigos/relugos/Area3D" unique_id=257853418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_yf5fn")
+
 [node name="peteguese" parent="inimigos" unique_id=876292480 node_paths=PackedStringArray("player") instance=ExtResource("3_1gl61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6022167, 15.513535, -26.029415)
 script = ExtResource("4_s1m4t")
@@ -59,5 +122,11 @@ shape = SubResource("SphereShape3D_g4v7s")
 
 [node name="hud" parent="CanvasLayer" unique_id=346732960 instance=ExtResource("3_urld1")]
 
+[connection signal="body_entered" from="inimigos/esza/Area3D" to="inimigos/esza" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="inimigos/esza/Area3D" to="inimigos/esza" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="inimigos/equidina/Area3D" to="inimigos/equidina" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="inimigos/equidina/Area3D" to="inimigos/equidina" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="inimigos/relugos/Area3D" to="inimigos/relugos" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="inimigos/relugos/Area3D" to="inimigos/relugos" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="inimigos/peteguese/Area3D" to="inimigos/peteguese" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="inimigos/peteguese/Area3D" to="inimigos/peteguese" method="_on_area_3d_body_exited"]

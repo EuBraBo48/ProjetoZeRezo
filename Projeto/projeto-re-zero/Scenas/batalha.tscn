@@ -114,21 +114,21 @@ theme_override_font_sizes/font_size = 60
 text = "ROUDE 1"
 
 [node name="cart1" parent="CanvasLayer" unique_id=181800887 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
-position = Vector2(867, 571)
+position = Vector2(805, 539)
 qualCArt = 1
 battle_manager = NodePath("../../personagem/BattleManager")
 per = NodePath("../../personagem/markerPEr")
 carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
 [node name="cart2" parent="CanvasLayer" unique_id=937391906 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
-position = Vector2(716, 564)
+position = Vector2(647, 538)
 qualCArt = 2
 battle_manager = NodePath("../../personagem/BattleManager")
 per = NodePath("../../personagem/markerPEr")
 carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
 [node name="cart3" parent="CanvasLayer" unique_id=1221620671 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
-position = Vector2(547, 567)
+position = Vector2(495, 538)
 qualCArt = 3
 battle_manager = NodePath("../../personagem/BattleManager")
 per = NodePath("../../personagem/markerPEr")

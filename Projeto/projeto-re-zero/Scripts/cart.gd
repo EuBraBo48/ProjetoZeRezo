@@ -2,27 +2,27 @@ extends Control
 
 var personagens = {
 	"emilia": {
-		"normal": "res://icon.svg"
+		"normal": "res://assents/cartes/cartsEmil.png"
 	},
 
 	"bete": {
-		"normal": "res://icon.svg"
+		"normal": "res://assents/cartes/cartaBet.png"
 	},
 
 	"ham": {
-		"normal": "res://icon.svg"
+		"normal": "res://assents/cartes/cartRem.png"
 	},
 
 	"hem": {
-		"normal": "res://icon.svg"
+		"normal": "res://assents/cartes/cartRam.png"
 	},
 
 	"garfiel": {
-		"normal": "res://icon.svg"
+		"normal": "res://assents/cartes/cartGufiel.png"
 	},
 
 	"prisila": {
-		"normal": "res://icon.svg"
+		"normal": "res://assents/cartes/CartaPRisl.png"
 	}
 }
 @export var cart_1: Sprite2D 

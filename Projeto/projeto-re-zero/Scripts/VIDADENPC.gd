@@ -18,9 +18,9 @@ var cartas: Dictionary = {
 		"vida": 100,
 		"vida_maxima": 100,
 		"habilidades": [
-			{"nome": "Gelo", "dano": 15},
-			{"nome": "Barreira", "dano": 10},
-			{"nome": "Magia de Gelo", "dano": 30}
+			{"nome": "Cristal de Gelo", "dano": 15},
+			{"nome": "Lança de Gelo", "dano": 25},
+			{"nome": "Al Huma", "dano": 40}
 		]
 	},
 
@@ -29,9 +29,9 @@ var cartas: Dictionary = {
 		"vida": 120,
 		"vida_maxima": 120,
 		"habilidades": [
-			{"nome": "Corte", "dano": 20},
-			{"nome": "Ataque Poderoso", "dano": 35},
-			{"nome": "Especial", "dano": 50}
+			{"nome": "Corte de Espada", "dano": 20},
+			{"nome": "Yang Magic", "dano": 30},
+			{"nome": "Sol Carmesim", "dano": 50}
 		]
 	},
 
@@ -40,9 +40,9 @@ var cartas: Dictionary = {
 		"vida": 130,
 		"vida_maxima": 130,
 		"habilidades": [
-			{"nome": "Soco", "dano": 20},
-			{"nome": "Soco Forte", "dano": 35},
-			{"nome": "Especial", "dano": 50}
+			{"nome": "Soco de Ferro", "dano": 20},
+			{"nome": "Golpe Bestial", "dano": 35},
+			{"nome": "Transformação Tigre", "dano": 55}
 		]
 	},
 
@@ -53,7 +53,7 @@ var cartas: Dictionary = {
 		"habilidades": [
 			{"nome": "Mordida", "dano": 25},
 			{"nome": "Investida", "dano": 40},
-			{"nome": "Especial", "dano": 55}
+			{"nome": "Ataque Selvagem", "dano": 55}
 		]
 	},
 
@@ -62,9 +62,10 @@ var cartas: Dictionary = {
 		"vida": 110,
 		"vida_maxima": 110,
 		"habilidades": [
-			{"nome": "Ataque", "dano": 15},
-			{"nome": "Ataque Forte", "dano": 30},
-			{"nome": "Especial", "dano": 45}
+			{"nome": "Rajada de Vento", "dano": 15},
+			{"nome": "Al Wind", "dano": 30},
+			{"nome": "Força de Oni", "dano": 45}
+
 		]
 	},
 
@@ -79,6 +80,10 @@ var cartas: Dictionary = {
 		]
 	}
 }
+
+
+
+
 
 # ==================================================
 # CARTA ATUAL DO PLAYER
