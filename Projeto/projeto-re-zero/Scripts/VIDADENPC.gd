@@ -35,7 +35,7 @@ var cartas: Dictionary = {
 		]
 	},
 
-	"grafil": {
+	"garfiel": {
 		"nome": "Garfiel",
 		"vida": 130,
 		"vida_maxima": 130,
@@ -197,36 +197,17 @@ func _ready() -> void:
 	# ANIMATION PLAYER
 	# ==================================================
 
-	animation_player = find_child(
-		"AnimationPlayer",
-		true,
-		false
-	)
-
+	animation_player = find_child("AnimationPlayer",true,false)
 
 	if animation_player:
-
-		print(
-			"AnimationPlayer do Player encontrado!"
-		)
+		print("AnimationPlayer do Player encontrado!")
 
 	else:
-
-		print(
-			"AnimationPlayer do Player NÃO encontrado!"
-		)
-
-
+		print("AnimationPlayer do Player NÃO encontrado!")
 	# Começa parado
 	tocar_idle()
-
-
 	# Atualiza vida
-	vida_mudou.emit(
-		carta["vida"],
-		carta["vida_maxima"]
-	)
-
+	vida_mudou.emit(carta["vida"],carta["vida_maxima"])
 
 # ==================================================
 # IDLE / PARADO

@@ -13,20 +13,14 @@ extends Control
 
 
 # ==================================================
-# LABELS DAS HABILIDADES
+# NOME DA CARTA / PERSONAGEM
 # ==================================================
-# Coloque aqui os Labels que ficam em cima/dentro
-# dos seus botões.
-#
-# Exemplo:
-# BH1
-#   └── Label
-#
-# BH2
-#   └── Label
-#
-# BH3
-#   └── Label
+
+@export var label_nome_carta: Label
+
+
+# ==================================================
+# LABELS DAS HABILIDADES
 # ==================================================
 
 @export var label_habilidade_1: Label
@@ -116,6 +110,21 @@ func atualizar_habilidades() -> void:
 	if habilidadeDoPlayer.carta.is_empty():
 		return
 
+
+	# ==================================================
+	# NOME DO PERSONAGEM
+	# ==================================================
+
+	if label_nome_carta != null:
+
+		label_nome_carta.text = (
+			habilidadeDoPlayer.carta["nome"]
+		)
+
+
+	# ==================================================
+	# PEGA AS HABILIDADES
+	# ==================================================
 
 	var habilidades = (
 		habilidadeDoPlayer.carta["habilidades"]
@@ -216,9 +225,7 @@ func _on_bh_3_pressed() -> void:
 # ESCOLHER HABILIDADE
 # ==================================================
 
-func usar_habilidade(
-	index: int
-) -> void:
+func usar_habilidade(index: int) -> void:
 
 	if not pode_jogar:
 		return
@@ -242,37 +249,57 @@ func usar_habilidade(
 	)
 
 
-	# Verifica se existe essa habilidade
+	# ==================================================
+	# VERIFICA SE EXISTE ESSA HABILIDADE
+	# ==================================================
+
 	if index < 0 or index >= habilidades.size():
 		return
 
 
-	# Pega a habilidade
+	# ==================================================
+	# PEGA A HABILIDADE
+	# ==================================================
+
 	var habilidade = habilidades[index]
 
 
+	# ==================================================
+	# DEBUG
+	# ==================================================
+
 	print("========================")
 	print("HABILIDADE ESCOLHIDA")
+
 	print(
 		"PERSONAGEM: ",
 		habilidadeDoPlayer.carta["nome"]
 	)
+
 	print(
 		"NOME: ",
 		habilidade["nome"]
 	)
+
 	print(
 		"DANO: ",
 		habilidade["dano"]
 	)
+
 	print("========================")
 
 
-	# Impede clicar novamente
+	# ==================================================
+	# IMPEDE CLICAR NOVAMENTE
+	# ==================================================
+
 	bloquear_jogador()
 
 
-	# Manda para o BattleManager
+	# ==================================================
+	# MANDA PARA O BATTLE MANAGER
+	# ==================================================
+
 	await battle_manager.jogador_usou_habilidade(
 		habilidade
 	)

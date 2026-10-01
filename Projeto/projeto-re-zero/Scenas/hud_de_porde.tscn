@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b0a027c4bmk8g"]
 
 [ext_resource type="Script" uid="uid://ckt7cb02qhov3" path="res://Scripts/hud_de_porde.gd" id="1_yt8dy"]
+[ext_resource type="Texture2D" uid="uid://c0480lo50b3d6" path="res://assents/cartes/fundeC.png" id="2_oxej2"]
 
-[node name="hudDePorde" type="Control" unique_id=1331471706]
+[node name="hudDePorde" type="Control" unique_id=1331471706 node_paths=PackedStringArray("label_habilidade_1", "label_habilidade_2", "label_habilidade_3")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,59 +11,62 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yt8dy")
+label_habilidade_1 = NodePath("NH1")
+label_habilidade_2 = NodePath("NH2")
+label_habilidade_3 = NodePath("NH3")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1028163948]
-layout_mode = 0
-offset_left = 767.0
-offset_top = 223.0
-offset_right = 916.0
-offset_bottom = 419.0
-color = Color(0, 0, 0, 1)
+[node name="FundeC" type="Sprite2D" parent="." unique_id=1782706900]
+position = Vector2(871, 311)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_oxej2")
 
 [node name="NH1" type="Label" parent="." unique_id=727467367]
 layout_mode = 0
-offset_left = 797.0
-offset_top = 238.0
-offset_right = 846.0
-offset_bottom = 287.0
+offset_left = 793.0
+offset_top = 194.0
+offset_right = 954.0
+offset_bottom = 243.0
 text = "pode1"
 
 [node name="NH2" type="Label" parent="." unique_id=546746345]
 layout_mode = 0
-offset_left = 799.0
-offset_top = 319.0
-offset_right = 848.0
-offset_bottom = 368.0
+offset_left = 797.0
+offset_top = 339.0
+offset_right = 954.0
+offset_bottom = 371.0
 text = "pode1"
 
 [node name="NH3" type="Label" parent="." unique_id=806595729]
 layout_mode = 0
-offset_left = 796.0
-offset_top = 277.0
-offset_right = 845.0
-offset_bottom = 326.0
+offset_left = 795.0
+offset_top = 265.0
+offset_right = 958.0
+offset_bottom = 302.0
 text = "pode1"
 
 [node name="BH1" type="Button" parent="." unique_id=518035987]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 237.0
-offset_right = 843.0
-offset_bottom = 267.0
+offset_left = 778.0
+offset_top = 192.0
+offset_right = 966.0
+offset_bottom = 222.0
+flat = true
 
 [node name="BH2" type="Button" parent="." unique_id=927889840]
 layout_mode = 0
-offset_left = 799.0
-offset_top = 280.0
-offset_right = 839.0
-offset_bottom = 300.0
+offset_left = 790.0
+offset_top = 266.0
+offset_right = 961.0
+offset_bottom = 303.0
+flat = true
 
 [node name="BH3" type="Button" parent="." unique_id=103748105]
 layout_mode = 0
-offset_left = 783.0
-offset_top = 324.0
-offset_right = 885.0
-offset_bottom = 345.0
+offset_left = 789.0
+offset_top = 338.0
+offset_right = 955.0
+offset_bottom = 372.0
+flat = true
 
 [connection signal="pressed" from="BH1" to="." method="_on_bh_1_pressed"]
 [connection signal="pressed" from="BH2" to="." method="_on_bh_2_pressed"]

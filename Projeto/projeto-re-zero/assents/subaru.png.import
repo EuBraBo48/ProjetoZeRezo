@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3vhf3wq8rr8d"
-path="res://.godot/imported/w.png-1cc0f1cb1e6fd939f7aa423fe2119fff.ctex"
+uid="uid://c4gh08c8r2737"
+path="res://.godot/imported/subaru.png-1ea813f5ae4880df5141c9cdfb072728.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assents/w.png"
-dest_files=["res://.godot/imported/w.png-1cc0f1cb1e6fd939f7aa423fe2119fff.ctex"]
+source_file="res://assents/subaru.png"
+dest_files=["res://.godot/imported/subaru.png-1ea813f5ae4880df5141c9cdfb072728.ctex"]
 
 [params]
 

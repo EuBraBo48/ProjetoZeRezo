@@ -63,30 +63,46 @@ func _process(_delta: float) -> void:
 		if is_dragging and Input.is_action_pressed("click"):
 			global_position = get_global_mouse_position() - offset
 
+
+
+
+
 		if is_dragging and Input.is_action_just_released("click"):
 			is_dragging = false
 			Gobla.carta_sendo_arrastada = null
+
 			var tween := get_tree().create_tween()
 			tween.set_ease(Tween.EASE_OUT)
 			tween.set_trans(Tween.TRANS_QUAD)
-			# Está dentro do lugar correto
+
+		# Está dentro do lugar correto
 			if is_inside_dropable and body_ref != null:
-				tween.tween_property(self,"global_position",body_ref.global_position,0.2)
+				tween.tween_property(self, "global_position", body_ref.global_position, 0.2)
+
 				if qualCArt == 1:
 					var coisa1 = Gobla.cart1["nome"]
+					Gobla.personagem_jogado = coisa1
 					COLOCARPer(coisa1)
 					Gobla.PODEJOGAR = false
+					queue_free() # <-- DESTROI SOMENTE ESSA CARTA
 					return
-				elif  qualCArt == 2:
+
+				elif qualCArt == 2:
 					var coisa2 = Gobla.cart2["nome"]
+					Gobla.personagem_jogado = coisa2
 					COLOCARPer(coisa2)
 					Gobla.PODEJOGAR = false
+					queue_free() # <-- DESTROI SOMENTE ESSA CARTA
 					return
-				elif  qualCArt == 3:
+
+				elif qualCArt == 3:
 					var coisa3 = Gobla.cart3["nome"]
+					Gobla.personagem_jogado = coisa3
 					COLOCARPer(coisa3)
 					Gobla.PODEJOGAR = false
+					queue_free() # <-- DESTROI SOMENTE ESSA CARTA
 					return
+
 
 		# Está fora
 			else:
@@ -116,14 +132,14 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 
 func _on_area_2d_mouse_entered() -> void:
-	if Gobla.carta_sendo_arrastada == null:
+	if Gobla.carta_sendo_arrastada == null and Gobla.PODEJOGAR:
 		draggable = true
 		scale = Vector2(0.6, 0.6)
 
 
 
 func _on_area_2d_mouse_exited() -> void:
-	if not is_dragging:
+	if not is_dragging and Gobla.PODEJOGAR:
 		draggable = false
 		scale = Vector2(0.5,0.5)
 

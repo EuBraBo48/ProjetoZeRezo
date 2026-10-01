@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbsvau8wtbfd7"
-path="res://.godot/imported/Sprite-0002.png-728e1d3a692059fc05298dc4e02ef149.ctex"
+uid="uid://d4hdc2ksumjxc"
+path="res://.godot/imported/fundeCart.png-293d00d817588ca5581f421a62645274.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assents/Sprite-0002.png"
-dest_files=["res://.godot/imported/Sprite-0002.png-728e1d3a692059fc05298dc4e02ef149.ctex"]
+source_file="res://assents/cartes/fundeCart.png"
+dest_files=["res://.godot/imported/fundeCart.png-293d00d817588ca5581f421a62645274.ctex"]
 
 [params]
 

@@ -1,21 +1,37 @@
 extends Sprite2D
 
-@export var color_rect: ColorRect
+@export var color_rect: Sprite2D
 @export var sprite_2d_3: Sprite2D
+@export var spr2: Sprite2D
+@export var spr3: Sprite2D
+@export var spr1: Sprite2D
 @export var qualCart: int
 @export var nome: Label
 @export var UpVi: Label
 @export var UpPo: Label
 @export var up_po: Button
 @export var up_vi: Button
+@export var h_1: Label 
+@export var h_2: Label 
+@export var h_3: Label
+
 
 
 func _ready() -> void:
 	if qualCart == 1:
+		h_1.text = Gobla.cart1["habilidades"][0]
+		h_2.text = Gobla.cart1["habilidades"][1]
+		h_3.text = Gobla.cart1["habilidades"][2]
 		sprite_2d_3.texture = load(Gobla.cart1["normal"])
 	elif qualCart == 2:
+		h_1.text = Gobla.cart2["habilidades"][0]
+		h_2.text = Gobla.cart2["habilidades"][1]
+		h_3.text = Gobla.cart2["habilidades"][2]
 		sprite_2d_3.texture = load(Gobla.cart2["normal"])
 	elif qualCart == 3:
+		h_1.text = Gobla.cart3["habilidades"][0]
+		h_2.text = Gobla.cart3["habilidades"][1]
+		h_3.text = Gobla.cart3["habilidades"][2]
 		sprite_2d_3.texture = load(Gobla.cart3["normal"])
 
 
@@ -107,9 +123,30 @@ func _process(_delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	if color_rect.visible:
+		sprite_2d_3.scale = Vector2(0.6,0.6)
+		spr1.show()
+		spr2.show()
+		spr3.show()
 		color_rect.hide()
 	else:
-		color_rect.show()
+		if qualCart == 1:
+			spr1.show()
+			spr2.hide()
+			spr3.hide()
+			sprite_2d_3.scale = Vector2(1,1)
+			color_rect.show()
+		if qualCart == 2:
+			spr1.hide()
+			spr2.show()
+			spr3.hide()
+			sprite_2d_3.scale = Vector2(1,1)
+			color_rect.show()
+		if qualCart == 3:
+			spr1.hide()
+			spr2.hide()
+			spr3.show()
+			sprite_2d_3.scale = Vector2(1,1)
+			color_rect.show()
 
 
 func _on_up_vi_pressed() -> void:

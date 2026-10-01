@@ -86,7 +86,7 @@ transform = Transform3D(-0.0098739965, 0.49634224, -0.8680708, 0.005645351, 0.86
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=770167127]
 
 [node name="AreDeArasto" type="StaticBody2D" parent="CanvasLayer" unique_id=30808374 groups=["dropable"]]
-position = Vector2(-2, 1)
+position = Vector2(260, 4)
 script = ExtResource("3_wup45")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/AreDeArasto" unique_id=1213559932]
@@ -98,6 +98,7 @@ offset_left = 512.0
 offset_top = 172.0
 offset_right = 721.0
 offset_bottom = 357.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=116384715]
 offset_left = 163.0
