@@ -1173,10 +1173,11 @@ habilidadeDoPlayer = NodePath("..")
 barra_vida = NodePath("../ProgressBar")
 
 [node name="Button" type="Button" parent="." unique_id=1409658554]
-offset_left = 580.0
-offset_top = 221.0
-offset_right = 687.0
-offset_bottom = 402.0
+offset_left = 594.0
+offset_top = 199.0
+offset_right = 716.0
+offset_bottom = 424.0
+flat = true
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=707207403]
 offset_left = 971.0

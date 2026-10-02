@@ -2,10 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c0omg8jps4qx5" path="res://Scripts/batalha.gd" id="1_d3anb"]
 [ext_resource type="PackedScene" uid="uid://bruwqxrq7gprr" path="res://Scenas/modelos/perns/subaru_modelo.tscn" id="1_v2eyi"]
+[ext_resource type="Texture2D" uid="uid://hubsjvuq8kgg" path="res://assents/textura/Ground080_1K-JPG_Color.jpg" id="2_1frd2"]
 [ext_resource type="PackedScene" uid="uid://bgxe68y4u6t5q" path="res://Scenas/cart.tscn" id="3_1ve5g"]
+[ext_resource type="Texture2D" uid="uid://ccxil6mbspb8u" path="res://assents/textura/Ground080_1K-JPG_Roughness.jpg" id="3_45tx0"]
 [ext_resource type="PackedScene" uid="uid://b7wuchgxflfyl" path="res://Scenas/inimigo_cartd.tscn" id="3_d3anb"]
 [ext_resource type="Script" uid="uid://bdlo5vbtnoyae" path="res://Scripts/battle_manager.gd" id="3_rfanb"]
 [ext_resource type="Script" uid="uid://4l1i4r2wxygi" path="res://Scripts/are_de_arasto.gd" id="3_wup45"]
+[ext_resource type="FontFile" uid="uid://dggy4aoguhxye" path="res://assents/fontes/Xolonium-Regular.ttf" id="8_45tx0"]
+[ext_resource type="Texture2D" uid="uid://x7veqb4xci2i" path="res://assents/fundo.png" id="8_d2a0t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51h8h"]
 sky_top_color = Color(0.5555752, 0.21058914, 0.13391468, 1)
@@ -19,6 +23,16 @@ sky_material = SubResource("ProceduralSkyMaterial_51h8h")
 [sub_resource type="Environment" id="Environment_ten2k"]
 background_mode = 2
 sky = SubResource("Sky_v2eyi")
+sky_custom_fov = 93.9
+fog_enabled = true
+fog_light_color = Color(0.8190642, 0.4957636, 0.21849662, 1)
+fog_sun_scatter = 1.0
+fog_density = 0.085
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o41jv"]
+albedo_texture = ExtResource("2_1frd2")
+roughness = 0.0
+roughness_texture = ExtResource("3_45tx0")
 
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(36.229458, 0.12061719, 26.709747)
@@ -46,6 +60,7 @@ shadow_enabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="elementos" unique_id=1965732325]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.1571865, 0.12224144, -6.693882)
+material_override = SubResource("StandardMaterial3D_o41jv")
 mesh = SubResource("BoxMesh_g4v7s")
 
 [node name="perso" type="Marker3D" parent="elementos" unique_id=633792833]
@@ -74,11 +89,13 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 [node name="PErsoN" type="Marker3D" parent="personagem" unique_id=1134293720]
 transform = Transform3D(0.22764361, 0, -0.5551381, 0, 0.59999996, 0, 0.5551381, 0, 0.22764361, -8.574871, 0.77751845, -4.8560476)
 
-[node name="BattleManager" type="Node3D" parent="personagem" unique_id=889090654 node_paths=PackedStringArray("carta_inimigo", "label_round", "label_vez") groups=["battle_manager"]]
+[node name="BattleManager" type="Node3D" parent="personagem" unique_id=889090654 node_paths=PackedStringArray("carta_inimigo", "label_round", "label_vez", "label_dano_player", "label_dano_inimigo") groups=["battle_manager"]]
 script = ExtResource("3_rfanb")
 carta_inimigo = NodePath("../markerPEr2/InimigoCartd")
 label_round = NodePath("../../CanvasLayer/Label")
 label_vez = NodePath("../../CanvasLayer/Label2")
+label_dano_player = NodePath("../../CanvasLayer/danoini")
+label_dano_inimigo = NodePath("../../CanvasLayer/danoPl")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1634992761]
 transform = Transform3D(-0.0098739965, 0.49634224, -0.8680708, 0.005645351, 0.8681269, 0.49631014, 0.9999353, 4.6563117e-10, -0.011373908, -11.004258, 1.114732, -3.6807191)
@@ -100,44 +117,66 @@ offset_right = 721.0
 offset_bottom = 357.0
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=116384715]
-offset_left = 163.0
-offset_top = 540.0
-offset_right = 888.0
-offset_bottom = 649.0
-
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=417849901]
-offset_left = 886.0
-offset_top = -10.0
-offset_right = 1144.0
-offset_bottom = 73.0
+offset_left = 842.0
+offset_top = -1.0
+offset_right = 1140.0
+offset_bottom = 82.0
+theme_override_fonts/font = ExtResource("8_45tx0")
 theme_override_font_sizes/font_size = 60
 text = "ROUDE 1"
 
+[node name="Fundo" type="Sprite2D" parent="CanvasLayer" unique_id=564947637]
+position = Vector2(581, 599)
+scale = Vector2(2, 2)
+texture = ExtResource("8_d2a0t")
+
 [node name="cart1" parent="CanvasLayer" unique_id=181800887 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
-position = Vector2(805, 539)
+position = Vector2(792, 537)
 qualCArt = 1
 battle_manager = NodePath("../../personagem/BattleManager")
 per = NodePath("../../personagem/markerPEr")
 carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
 [node name="cart2" parent="CanvasLayer" unique_id=937391906 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
-position = Vector2(647, 538)
+position = Vector2(634, 536)
 qualCArt = 2
 battle_manager = NodePath("../../personagem/BattleManager")
 per = NodePath("../../personagem/markerPEr")
 carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
 [node name="cart3" parent="CanvasLayer" unique_id=1221620671 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
-position = Vector2(495, 538)
+position = Vector2(482, 536)
 qualCArt = 3
 battle_manager = NodePath("../../personagem/BattleManager")
 per = NodePath("../../personagem/markerPEr")
 carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
 [node name="Label2" type="Label" parent="CanvasLayer" unique_id=2007564062]
-offset_left = 1026.0
-offset_top = 72.0
-offset_right = 1176.0
-offset_bottom = 130.0
+offset_left = 979.0
+offset_top = 69.0
+offset_right = 1111.0
+offset_bottom = 98.0
+theme_override_fonts/font = ExtResource("8_45tx0")
+theme_override_font_sizes/font_size = 20
 text = "sua ver"
+
+[node name="danoPl" type="Label" parent="CanvasLayer" unique_id=1803372120]
+offset_left = 430.0
+offset_top = 223.0
+offset_right = 556.0
+offset_bottom = 261.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_45tx0")
+theme_override_font_sizes/font_size = 30
+text = "12"
+
+[node name="danoini" type="Label" parent="CanvasLayer" unique_id=2026532501]
+offset_left = 568.0
+offset_top = 320.0
+offset_right = 694.0
+offset_bottom = 358.0
+theme_override_colors/font_color = Color(1, 0.16078432, 0, 1)
+theme_override_fonts/font = ExtResource("8_45tx0")
+theme_override_font_sizes/font_size = 30
+text = "12"

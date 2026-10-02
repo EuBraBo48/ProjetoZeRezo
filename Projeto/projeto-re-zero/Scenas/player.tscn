@@ -22,3 +22,10 @@ script = ExtResource("2_qd8k4")
 [node name="Camera3D" type="Camera3D" parent="heand" unique_id=1421826943]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66604257, -0.46802312)
 fov = 76.15718
+
+[node name="SpotLight3D" type="SpotLight3D" parent="heand/Camera3D" unique_id=1857746400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.66604257, 0.46802312)
+light_color = Color(0.99607843, 0.94509804, 0.7294118, 1)
+spot_range = 14.635
+spot_angle = 40.033276
+spot_angle_attenuation = 2.0

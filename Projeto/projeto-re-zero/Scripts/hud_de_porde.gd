@@ -101,7 +101,6 @@ func atualizar_barra_vida() -> void:
 # ==================================================
 # ATUALIZAR HABILIDADES
 # ==================================================
-
 func atualizar_habilidades() -> void:
 
 	if habilidadeDoPlayer == null:
@@ -139,9 +138,7 @@ func atualizar_habilidades() -> void:
 
 		if habilidades.size() > 0:
 
-			label_habilidade_1.text = (
-				habilidades[0]["nome"]
-			)
+			label_habilidade_1.text = (habilidades[0]["nome"]+ " - "+ str(habilidades[0]["dano"]))
 
 
 	# ==================================================
@@ -154,7 +151,8 @@ func atualizar_habilidades() -> void:
 
 			label_habilidade_2.text = (
 				habilidades[1]["nome"]
-			)
+				+ " - "
+	+ str(habilidades[1]["dano"]))
 
 
 	# ==================================================
@@ -167,9 +165,8 @@ func atualizar_habilidades() -> void:
 
 			label_habilidade_3.text = (
 				habilidades[2]["nome"]
-			)
-
-
+				+ " - "
+				+ str(habilidades[2]["dano"]))
 # ==================================================
 # BOTÃO PRINCIPAL
 # ==================================================

@@ -2,70 +2,85 @@
 
 [ext_resource type="Script" uid="uid://ckt7cb02qhov3" path="res://Scripts/hud_de_porde.gd" id="1_yt8dy"]
 [ext_resource type="Texture2D" uid="uid://c0480lo50b3d6" path="res://assents/cartes/fundeC.png" id="2_oxej2"]
+[ext_resource type="FontFile" uid="uid://dggy4aoguhxye" path="res://assents/fontes/Xolonium-Regular.ttf" id="3_adgh1"]
 
 [node name="hudDePorde" type="Control" unique_id=1331471706 node_paths=PackedStringArray("label_habilidade_1", "label_habilidade_2", "label_habilidade_3")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.9999998
+offset_right = 127.666626
+offset_bottom = 75.333374
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_yt8dy")
 label_habilidade_1 = NodePath("NH1")
 label_habilidade_2 = NodePath("NH2")
 label_habilidade_3 = NodePath("NH3")
 
 [node name="FundeC" type="Sprite2D" parent="." unique_id=1782706900]
-position = Vector2(871, 311)
-scale = Vector2(0.8, 0.8)
+position = Vector2(1062.7778, 342.53333)
+scale = Vector2(0.9270835, 0.8)
 texture = ExtResource("2_oxej2")
 
 [node name="NH1" type="Label" parent="." unique_id=727467367]
 layout_mode = 0
-offset_left = 793.0
-offset_top = 194.0
-offset_right = 954.0
-offset_bottom = 243.0
-text = "pode1"
+offset_left = 955.55554
+offset_top = 225.53336
+offset_right = 1135.5557
+offset_bottom = 252.22223
+theme_override_fonts/font = ExtResource("3_adgh1")
+theme_override_font_sizes/font_size = 15
+text = "Cristal de Gelo- 15"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NH2" type="Label" parent="." unique_id=546746345]
 layout_mode = 0
-offset_left = 797.0
-offset_top = 339.0
-offset_right = 954.0
-offset_bottom = 371.0
+offset_left = 968.44446
+offset_top = 370.53333
+offset_right = 1125.4445
+offset_bottom = 402.53333
+theme_override_fonts/font = ExtResource("3_adgh1")
 text = "pode1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NH3" type="Label" parent="." unique_id=806595729]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 265.0
-offset_right = 958.0
-offset_bottom = 302.0
+offset_left = 966.44446
+offset_top = 296.53333
+offset_right = 1129.4445
+offset_bottom = 333.53333
+theme_override_fonts/font = ExtResource("3_adgh1")
 text = "pode1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BH1" type="Button" parent="." unique_id=518035987]
 layout_mode = 0
-offset_left = 778.0
-offset_top = 192.0
-offset_right = 966.0
-offset_bottom = 222.0
+offset_left = 949.44446
+offset_top = 223.53336
+offset_right = 1137.4445
+offset_bottom = 253.53334
 flat = true
 
 [node name="BH2" type="Button" parent="." unique_id=927889840]
 layout_mode = 0
-offset_left = 790.0
-offset_top = 266.0
-offset_right = 961.0
-offset_bottom = 303.0
+offset_left = 961.44446
+offset_top = 297.53333
+offset_right = 1132.4445
+offset_bottom = 334.53333
 flat = true
 
 [node name="BH3" type="Button" parent="." unique_id=103748105]
 layout_mode = 0
-offset_left = 789.0
-offset_top = 338.0
-offset_right = 955.0
-offset_bottom = 372.0
+offset_left = 960.44446
+offset_top = 369.53333
+offset_right = 1126.4445
+offset_bottom = 403.53333
 flat = true
 
 [connection signal="pressed" from="BH1" to="." method="_on_bh_1_pressed"]

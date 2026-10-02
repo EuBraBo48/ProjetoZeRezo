@@ -32,6 +32,10 @@ folder_colors={
 "res://sons/": "pink"
 }
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 ui_left={

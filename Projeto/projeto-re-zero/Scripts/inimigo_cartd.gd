@@ -16,9 +16,7 @@ var personagens: Dictionary = {
 		"carta": {
 
 			"nome": "Bete",
-
 			"vida": 90,
-
 			"vida_maxima": 90,
 
 			"habilidades": [
@@ -51,9 +49,7 @@ var personagens: Dictionary = {
 		"carta": {
 
 			"nome": "Emilia",
-
 			"vida": 100,
-
 			"vida_maxima": 100,
 
 			"habilidades": [
@@ -86,9 +82,7 @@ var personagens: Dictionary = {
 		"carta": {
 
 			"nome": "Garfiel",
-
 			"vida": 130,
-
 			"vida_maxima": 130,
 
 			"habilidades": [
@@ -121,9 +115,7 @@ var personagens: Dictionary = {
 		"carta": {
 
 			"nome": "Ham",
-
 			"vida": 140,
-
 			"vida_maxima": 140,
 
 			"habilidades": [
@@ -156,9 +148,7 @@ var personagens: Dictionary = {
 		"carta": {
 
 			"nome": "Hem",
-
 			"vida": 110,
-
 			"vida_maxima": 110,
 
 			"habilidades": [
@@ -191,9 +181,7 @@ var personagens: Dictionary = {
 		"carta": {
 
 			"nome": "Prisila",
-
 			"vida": 120,
-
 			"vida_maxima": 120,
 
 			"habilidades": [
@@ -237,8 +225,14 @@ var carta: Dictionary = {}
 # ==================================================
 
 var personagem: Node3D = null
-
 var animation_player: AnimationPlayer = null
+
+
+# ==================================================
+# LABEL DO DANO DO INIMIGO
+# ==================================================
+
+var label_dano_inimigo: Label
 
 
 # ==================================================
@@ -251,18 +245,59 @@ func _ready() -> void:
 
 
 # ==================================================
+# CRIAR LABEL DO DANO
+# ==================================================
+
+func criar_label_dano() -> void:
+
+	label_dano_inimigo = Label.new()
+
+	label_dano_inimigo.text = "-0"
+	label_dano_inimigo.visible = false
+
+	label_dano_inimigo.z_index = 100
+
+	label_dano_inimigo.add_theme_font_size_override(
+		"font_size",
+		40
+	)
+
+	label_dano_inimigo.add_theme_color_override(
+		"font_color",
+		Color.WHITE
+	)
+
+	label_dano_inimigo.add_theme_color_override(
+		"font_shadow_color",
+		Color.BLACK
+	)
+
+	label_dano_inimigo.add_theme_constant_override(
+		"shadow_offset_x",
+		3
+	)
+
+	label_dano_inimigo.add_theme_constant_override(
+		"shadow_offset_y",
+		3
+	)
+
+	get_tree().root.add_child(
+		label_dano_inimigo
+	)
+
+
+# ==================================================
 # CRIAR PERSONAGEM
 # ==================================================
 
 func criar_novo_personagem() -> void:
 
-	# Todos já apareceram
 	if personagens_usados.size() >= personagens.size():
 
 		personagens_usados.clear()
 
 
-	# Disponíveis
 	var disponiveis: Array = []
 
 
@@ -277,7 +312,6 @@ func criar_novo_personagem() -> void:
 			)
 
 
-	# Escolhe personagem
 	var nome_escolhido: String = (
 		disponiveis.pick_random()
 	)
@@ -294,28 +328,25 @@ func criar_novo_personagem() -> void:
 
 
 	# ==================================================
-	# PEGA A CARTA DESTE PERSONAGEM
+	# PEGA A CARTA
 	# ==================================================
 
 	carta = dados[
 		"carta"
 	].duplicate(true)
 
-
-	# Vida cheia
 	carta["vida"] = carta[
 		"vida_maxima"
 	]
 
 
 	# ==================================================
-	# INSTANTIA O PERSONAGEM
+	# INSTANTIA PERSONAGEM
 	# ==================================================
 
 	personagem = dados[
 		"cena"
 	].instantiate()
-
 
 	add_child(
 		personagem
@@ -347,7 +378,7 @@ func criar_novo_personagem() -> void:
 
 
 	# ==================================================
-	# PRINT DA CARTA
+	# PRINT
 	# ==================================================
 
 	print("========================")
@@ -357,12 +388,22 @@ func criar_novo_personagem() -> void:
 	print("========================")
 
 
-	# Começa parado
+	# ==================================================
+	# CRIA LABEL
+	# ==================================================
+
+	criar_label_dano()
+
+
+	# ==================================================
+	# IDLE
+	# ==================================================
+
 	tocar_idle()
 
 
 # ==================================================
-# IDLE / PARADO
+# IDLE
 # ==================================================
 
 func tocar_idle() -> void:
@@ -370,11 +411,8 @@ func tocar_idle() -> void:
 	if animation_player == null:
 		return
 
-
 	animation_player.stop()
 
-
-	# mixamo_com = PARADO
 	if animation_player.has_animation(
 		"mixamo_com"
 	):
@@ -394,23 +432,18 @@ func jogar() -> Dictionary:
 		"IA está pensando..."
 	)
 
-
 	await get_tree().create_timer(
 		1.0
 	).timeout
 
-
-	# Escolhe UMA das 3 habilidades
 	var habilidade = carta[
 		"habilidades"
 	].pick_random()
-
 
 	print(
 		"IA escolheu: ",
 		habilidade["nome"]
 	)
-
 
 	return habilidade
 
@@ -429,11 +462,8 @@ func atacar() -> void:
 
 		return
 
-
 	animation_player.stop()
 
-
-	# mixamo_com_001 = ATAQUE
 	if animation_player.has_animation(
 		"mixamo_com_001"
 	):
@@ -442,13 +472,10 @@ func atacar() -> void:
 			"mixamo_com_001"
 		)
 
-
 		await get_tree().create_timer(
 			2.4
 		).timeout
 
-
-	# Volta para Idle
 	tocar_idle()
 
 
@@ -462,25 +489,105 @@ func receber_dano(
 
 	carta["vida"] -= dano
 
-
 	carta["vida"] = max(
 		carta["vida"],
 		0
 	)
 
-
 	print("========================")
 	print("IA RECEBEU DANO")
 	print("Personagem: ", carta["nome"])
 	print("Dano: ", dano)
+
 	print(
 		"Vida: ",
 		carta["vida"],
 		"/",
 		carta["vida_maxima"]
 	)
+
 	print("========================")
 
+	# MOSTRA O DANO QUE O INIMIGO RECEBEU
+	mostrar_dano_inimigo(
+		dano
+	)
+
+
+# ==================================================
+# MOSTRAR DANO DO INIMIGO
+# ==================================================
+func mostrar_dano_inimigo(dano: int) -> void:
+
+	if label_dano_inimigo == null:
+		print("ERRO: LABEL DE DANO DO INIMIGO NÃO EXISTE!")
+		return
+
+	label_dano_inimigo.text = "-" + str(dano)
+	label_dano_inimigo.visible = true
+	label_dano_inimigo.modulate.a = 1.0
+
+	# PROCURA O BATTLE MANAGER
+	var battle_manager = get_tree().get_first_node_in_group("battle_manager")
+
+	if battle_manager == null:
+		print("ERRO: BattleManager não encontrado!")
+		return
+
+	# PEGA O PLAYER
+	var player = battle_manager.carta_player
+
+	if not is_instance_valid(player):
+		print("ERRO: Player não existe!")
+		return
+
+	var camera = get_viewport().get_camera_3d()
+
+	if camera == null:
+		print("ERRO: Câmera 3D não encontrada!")
+		return
+
+	# POSIÇÃO DO PLAYER
+	var pos_3d = player.global_position
+
+	# SOBE O TEXTO
+	pos_3d.y += 2.0
+
+	# CONVERTE PARA POSIÇÃO NA TELA
+	var pos_tela = camera.unproject_position(pos_3d)
+
+	label_dano_inimigo.position = pos_tela
+
+	print(
+		"DANO DA IA APARECENDO NO PLAYER: -",
+		dano
+	)
+
+	var pos_inicial = label_dano_inimigo.position
+	var pos_final = pos_inicial + Vector2(0, -60)
+
+	var tween = get_tree().create_tween()
+
+	tween.set_parallel(true)
+
+	tween.tween_property(
+		label_dano_inimigo,
+		"position",
+		pos_final,
+		1.0
+	)
+
+	tween.tween_property(
+		label_dano_inimigo,
+		"modulate:a",
+		0.0,
+		1.0
+	)
+
+	await tween.finished
+
+	label_dano_inimigo.visible = false
+	label_dano_inimigo.modulate.a = 1.0
 
 # ==================================================
 # MORTE
@@ -502,6 +609,23 @@ func trocar_personagem() -> void:
 	)
 
 
+	# ==================================================
+	# APAGA LABEL ANTIGO
+	# ==================================================
+
+	if is_instance_valid(
+		label_dano_inimigo
+	):
+
+		label_dano_inimigo.queue_free()
+
+		label_dano_inimigo = null
+
+
+	# ==================================================
+	# APAGA PERSONAGEM ANTIGO
+	# ==================================================
+
 	if is_instance_valid(
 		personagem
 	):
@@ -510,9 +634,11 @@ func trocar_personagem() -> void:
 
 
 	personagem = null
-
 	animation_player = null
 
 
-	# Novo personagem
+	# ==================================================
+	# CRIA NOVO
+	# ==================================================
+
 	criar_novo_personagem()
