@@ -1,10 +1,59 @@
-extends Node3D
+extends CanvasLayer
 
-var estNA:= false
-@export var CAminho: PackedScene
-@export var player : CharacterBody3D
-@export var dialog: CanvasLayer
-@export var neme: String
+
+const DIALOG_SCREEEN: PackedScene = preload("res://Scenas/dialog.tscn")
+@export_category("Objects")
+@export var hud: CanvasLayer = null
+
+var DialogChefeDia1: Dictionary = {
+	0: {
+		"dialog": "Aonde eu estou?",
+		"title": "Subaru",
+			},
+	1: {
+		"dialog": "Isso é a Torre de Pleiades... Como diabos eu vim parar aqui?",
+		"title": "Subaru",
+		
+	},
+	2: {
+		"dialog": "Tá tipo ar tipo er tipo nada ver... Não vou fazer muitas perguntas. Meu objetivo é subir até o topo dessa torre. Com os meus amigos, vou enfrentar todos que estiverem na minha frente.",
+		"title": "Subaru",
+	
+	},
+	3: {
+		"dialog": "Não importa se forem Bispos do Pecado ou Bruxas. Qualquer inimigo que vier pela frente, eu vou vencer. E se eu morrer... é só recomeçar.",
+		"title": "Subaru",
+			},
+	4: {
+		"dialog": "Pronto. Esse é o meu objetivo.",
+		"title": "Subaru",
+			},
+	5: {
+		"dialog": "Tutorial: para abrir e ver quais cartas você possui, aperte \"R\". Aqui também haverá uma lojinha para você melhorar suas cartas.",
+		"title": "Tutorial",
+		
+	},
+	6: {
+		"dialog": "As cartas serão o seu principal meio de subir por toda essa torre. Então, escolha suas cartas com cuidado.",
+		"title": "Tutorial",
+		
+			},
+	7: {
+		"dialog": "Boa sorte! Enfrente 5 inimigos até chegar ao topo da torre.",
+		"title": "Tutorial",
+		"icone": "res://EuBraBo/Sprites/icones/PatraoIcone.png"
+	},
+	8: {
+		"dialog": "Você possui uma habilidade chamada RETORNO. Para ativá-la, você precisa morrer algumas vezes.",
+		"title": "Tutorial",
+		
+	},
+	9: {
+		"dialog": "Depois de morrer, basta apertar \"T\". Pronto! Suas cartas serão trocadas e você poderá tentar novamente.",
+		"title": "Tutorial",
+		
+	}
+}
 
 var DialogPetelgeuse: Dictionary = {
 	0: {
@@ -122,38 +171,16 @@ var DialogDaphne: Dictionary = {
 }
 
 
-func _process(delta: float) -> void:
-	if estNA and Input.is_action_pressed("interagir"):
-		if neme == "DialogPetelgeuse":
-			Gobla.InimeDaCena = CAminho
-			Gobla.posicaoPlay = player.position
-			dialog.dialogDiarioAbri(DialogPetelgeuse)
-		if neme == "DialogRegulus":
-			Gobla.InimeDaCena = CAminho
-			Gobla.posicaoPlay = player.position
-			dialog.dialogDiarioAbri(DialogRegulus)
-		if neme == "DialogEchidna":
-			Gobla.InimeDaCena = CAminho
-			Gobla.posicaoPlay = player.position
-			dialog.dialogDiarioAbri(DialogEchidna)
-		if neme == "DialogElsa":
-			Gobla.InimeDaCena = CAminho
-			Gobla.posicaoPlay = player.position
-			dialog.dialogDiarioAbri(DialogElsa)
-		if neme == "DialogDaphne":
-			Gobla.InimeDaCena = CAminho
-			Gobla.posicaoPlay = player.position
-			dialog.dialogDiarioAbri(DialogDaphne)
 
-		
-		
-
-func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		print("dfshifiusf")
-		estNA = true
+func _ready() -> void:
+	if Gobla.passoTuTorial:
+		dialogDiarioAbri(DialogChefeDia1)
 
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body.is_in_group("player"):
-		estNA = false
+
+func dialogDiarioAbri(nome) -> void:
+	var dialog: DialogScren = DIALOG_SCREEEN.instantiate()
+	dialog.data = nome
+	get_tree().paused = true
+	#Gobla.passoTuTorial = false
+	hud.add_child(dialog)

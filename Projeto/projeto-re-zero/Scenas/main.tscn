@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bwtbbukhv8wt8" path="res://Scenas/modelos/perns/relugos.tscn" id="4_gug6g"]
 [ext_resource type="PackedScene" uid="uid://b3ajyfi67n8gy" path="res://Scenas/modelos/perns/esza.tscn" id="4_k15po"]
 [ext_resource type="Script" uid="uid://bmnq6vafbwtfp" path="res://Scripts/PortaoParaBata.gd" id="4_s1m4t"]
+[ext_resource type="Script" uid="uid://c41cbskemqr5e" path="res://Scripts/DIALOGS.gd" id="10_iw5vi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ue5qb"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -53,15 +54,17 @@ environment = SubResource("Environment_an1xy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9442463, -0.6232834, -0.6445999)
 
 [node name="player" parent="." unique_id=1321939021 groups=["player"] instance=ExtResource("2_ue5qb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2086439, 18.01101, -4.05207)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2086439, 0.666672, -7.611445)
 
 [node name="inimigos" type="Node3D" parent="." unique_id=714225592]
 
-[node name="bruxa" parent="inimigos" unique_id=1340049128 node_paths=PackedStringArray("player") instance=ExtResource("4_drlub")]
+[node name="bruxa" parent="inimigos" unique_id=1340049128 node_paths=PackedStringArray("player", "dialog") instance=ExtResource("4_drlub")]
 transform = Transform3D(-0.4999999, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.4999999, -12.485371, 73.658455, -19.650103)
 script = ExtResource("4_s1m4t")
 CAminho = ExtResource("4_drlub")
 player = NodePath("../../player")
+dialog = NodePath("../../CanvasLayer/dialog")
+neme = "DialogDaphne"
 
 [node name="Area3D" type="Area3D" parent="inimigos/bruxa" unique_id=1816703600]
 
@@ -69,22 +72,26 @@ player = NodePath("../../player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.47737122, 0)
 shape = SubResource("SphereShape3D_3gngh")
 
-[node name="esza" parent="inimigos" unique_id=1235158162 node_paths=PackedStringArray("player") instance=ExtResource("4_k15po")]
+[node name="esza" parent="inimigos" unique_id=1235158162 node_paths=PackedStringArray("player", "dialog") instance=ExtResource("4_k15po")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5792723, 55.27765, -27.605986)
 script = ExtResource("4_s1m4t")
 CAminho = ExtResource("4_k15po")
 player = NodePath("../../player")
+dialog = NodePath("../../CanvasLayer/dialog")
+neme = "DialogElsa"
 
 [node name="Area3D" type="Area3D" parent="inimigos/esza" unique_id=180135881]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="inimigos/esza/Area3D" unique_id=405455443]
 shape = SubResource("SphereShape3D_d0u6y")
 
-[node name="equidina" parent="inimigos" unique_id=50589587 node_paths=PackedStringArray("player") instance=ExtResource("4_af5hs")]
+[node name="equidina" parent="inimigos" unique_id=50589587 node_paths=PackedStringArray("player", "dialog") instance=ExtResource("4_af5hs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54187965, 41.92022, -25.775307)
 script = ExtResource("4_s1m4t")
 CAminho = ExtResource("4_af5hs")
 player = NodePath("../../player")
+dialog = NodePath("../../CanvasLayer/dialog")
+neme = "DialogEchidna"
 
 [node name="Area3D" type="Area3D" parent="inimigos/equidina" unique_id=556446460]
 
@@ -92,11 +99,13 @@ player = NodePath("../../player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_57qmd")
 
-[node name="relugos" parent="inimigos" unique_id=393715837 node_paths=PackedStringArray("player") instance=ExtResource("4_gug6g")]
+[node name="relugos" parent="inimigos" unique_id=393715837 node_paths=PackedStringArray("player", "dialog") instance=ExtResource("4_gug6g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.763859, 29.356636, -26.801582)
 script = ExtResource("4_s1m4t")
 CAminho = ExtResource("4_gug6g")
 player = NodePath("../../player")
+dialog = NodePath("../../CanvasLayer/dialog")
+neme = "DialogRegulus"
 
 [node name="Area3D" type="Area3D" parent="inimigos/relugos" unique_id=514994232]
 
@@ -104,11 +113,13 @@ player = NodePath("../../player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_yf5fn")
 
-[node name="peteguese" parent="inimigos" unique_id=876292480 node_paths=PackedStringArray("player") instance=ExtResource("3_1gl61")]
+[node name="peteguese" parent="inimigos" unique_id=876292480 node_paths=PackedStringArray("player", "dialog") instance=ExtResource("3_1gl61")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6022167, 15.513535, -26.029415)
 script = ExtResource("4_s1m4t")
 CAminho = ExtResource("3_1gl61")
 player = NodePath("../../player")
+dialog = NodePath("../../CanvasLayer/dialog")
+neme = "DialogPetelgeuse"
 
 [node name="Area3D" type="Area3D" parent="inimigos/peteguese" unique_id=834368654]
 
@@ -117,6 +128,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("SphereShape3D_g4v7s")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1632000829]
+
+[node name="dialog" type="CanvasLayer" parent="CanvasLayer" unique_id=623512644 node_paths=PackedStringArray("hud")]
+script = ExtResource("10_iw5vi")
+hud = NodePath(".")
 
 [node name="hud" parent="CanvasLayer" unique_id=346732960 instance=ExtResource("3_urld1")]
 

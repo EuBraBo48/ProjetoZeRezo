@@ -17,8 +17,8 @@ grow_vertical = 2
 scale = Vector2(0.9, 0.9)
 script = ExtResource("1_yt8dy")
 label_habilidade_1 = NodePath("NH1")
-label_habilidade_2 = NodePath("NH2")
-label_habilidade_3 = NodePath("NH3")
+label_habilidade_2 = NodePath("NH3")
+label_habilidade_3 = NodePath("NH2")
 
 [node name="FundeC" type="Sprite2D" parent="." unique_id=1782706900]
 position = Vector2(1062.7778, 342.53333)
@@ -29,8 +29,9 @@ texture = ExtResource("2_oxej2")
 layout_mode = 0
 offset_left = 955.55554
 offset_top = 225.53336
-offset_right = 1135.5557
+offset_right = 1168.8889
 offset_bottom = 252.22223
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_adgh1")
 theme_override_font_sizes/font_size = 15
 text = "Cristal de Gelo- 15"
@@ -43,6 +44,7 @@ offset_left = 968.44446
 offset_top = 370.53333
 offset_right = 1125.4445
 offset_bottom = 402.53333
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_adgh1")
 text = "pode1"
 horizontal_alignment = 1
@@ -54,6 +56,7 @@ offset_left = 966.44446
 offset_top = 296.53333
 offset_right = 1129.4445
 offset_bottom = 333.53333
+mouse_filter = 0
 theme_override_fonts/font = ExtResource("3_adgh1")
 text = "pode1"
 horizontal_alignment = 1
@@ -71,7 +74,7 @@ flat = true
 layout_mode = 0
 offset_left = 961.44446
 offset_top = 297.53333
-offset_right = 1132.4445
+offset_right = 1166.6666
 offset_bottom = 334.53333
 flat = true
 
@@ -79,10 +82,16 @@ flat = true
 layout_mode = 0
 offset_left = 960.44446
 offset_top = 369.53333
-offset_right = 1126.4445
+offset_right = 1163.3335
 offset_bottom = 403.53333
 flat = true
 
+[connection signal="mouse_entered" from="NH1" to="." method="_on_nh_1_mouse_entered"]
+[connection signal="mouse_exited" from="NH1" to="." method="_on_nh_1_mouse_exited"]
+[connection signal="mouse_entered" from="NH2" to="." method="_on_nh_2_mouse_entered"]
+[connection signal="mouse_exited" from="NH2" to="." method="_on_nh_2_mouse_exited"]
+[connection signal="mouse_entered" from="NH3" to="." method="_on_nh_3_mouse_entered"]
+[connection signal="mouse_exited" from="NH3" to="." method="_on_nh_3_mouse_exited"]
 [connection signal="pressed" from="BH1" to="." method="_on_bh_1_pressed"]
 [connection signal="pressed" from="BH2" to="." method="_on_bh_2_pressed"]
 [connection signal="pressed" from="BH3" to="." method="_on_bh_3_pressed"]

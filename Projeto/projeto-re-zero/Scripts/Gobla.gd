@@ -9,6 +9,7 @@ var cart1
 var cart2
 var cart3
 var carta_sendo_arrastada: Node2D = null
+var passoTuTorial:= true
 var personagem_jogado: String = ""
 var Vitoria := 0.0
 var Mortes := 0.0

@@ -183,7 +183,6 @@ func _on_up_vi_pressed() -> void:
 
 
 func _on_up_po_pressed() -> void:
-
 	if qualCart == 1:
 		if Gobla.DanoDaCart1 >= 3:
 			return

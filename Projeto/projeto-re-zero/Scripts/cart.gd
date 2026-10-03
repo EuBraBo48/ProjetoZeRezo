@@ -64,8 +64,6 @@ func _ready() -> void:
 	Sorteio()
 
 func Sorteio() -> void:
-
-	# Cria uma lista com todos os personagens
 	var disponiveis = personagens.keys().duplicate()
 	var car1 = disponiveis.pick_random()
 	disponiveis.erase(car1)

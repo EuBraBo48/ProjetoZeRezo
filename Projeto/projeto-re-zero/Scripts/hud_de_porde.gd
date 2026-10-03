@@ -300,3 +300,30 @@ func usar_habilidade(index: int) -> void:
 	await battle_manager.jogador_usou_habilidade(
 		habilidade
 	)
+
+
+func _on_nh_1_mouse_entered() -> void:
+	print("iwioe")
+	label_habilidade_1.scale = Vector2(1.1, 1.1)
+
+
+func _on_nh_1_mouse_exited() -> void:
+	print("iwioe")
+	label_habilidade_1.scale = Vector2(1.0, 1.0)
+
+
+func _on_nh_2_mouse_entered() -> void:
+	print("iwioe")
+	label_habilidade_2.scale = Vector2(1.1, 1.1)
+
+func _on_nh_2_mouse_exited() -> void:
+	print("iwioe")
+	label_habilidade_2.scale = Vector2(1.0, 1.0)
+
+
+func _on_nh_3_mouse_entered() -> void:
+	label_habilidade_3.scale = Vector2(1.1, 1.1)
+
+
+func _on_nh_3_mouse_exited() -> void:
+	label_habilidade_3.scale = Vector2(1.0, 1.0)
