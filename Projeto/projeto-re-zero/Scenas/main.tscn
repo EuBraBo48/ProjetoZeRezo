@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://b3ajyfi67n8gy" path="res://Scenas/modelos/perns/esza.tscn" id="4_k15po"]
 [ext_resource type="Script" uid="uid://bmnq6vafbwtfp" path="res://Scripts/PortaoParaBata.gd" id="4_s1m4t"]
 [ext_resource type="Script" uid="uid://c41cbskemqr5e" path="res://Scripts/DIALOGS.gd" id="10_iw5vi"]
+[ext_resource type="AudioStream" uid="uid://wn83w34gt8q5" path="res://sons/godot/freesound_community-cottagecore-17463.wav" id="12_wp5hg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ue5qb"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -134,6 +135,10 @@ script = ExtResource("10_iw5vi")
 hud = NodePath(".")
 
 [node name="hud" parent="CanvasLayer" unique_id=346732960 instance=ExtResource("3_urld1")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=350496404]
+stream = ExtResource("12_wp5hg")
+autoplay = true
 
 [connection signal="body_entered" from="inimigos/esza/Area3D" to="inimigos/esza" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="inimigos/esza/Area3D" to="inimigos/esza" method="_on_area_3d_body_exited"]

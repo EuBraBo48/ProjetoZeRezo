@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://4l1i4r2wxygi" path="res://Scripts/are_de_arasto.gd" id="3_wup45"]
 [ext_resource type="FontFile" uid="uid://dggy4aoguhxye" path="res://assents/fontes/Xolonium-Regular.ttf" id="8_45tx0"]
 [ext_resource type="Texture2D" uid="uid://x7veqb4xci2i" path="res://assents/fundo.png" id="8_d2a0t"]
+[ext_resource type="AudioStream" uid="uid://blcgwo5ml8bnk" path="res://sons/godot/freesound_community-8bit-sample-69080.wav" id="11_d2a0t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_51h8h"]
 sky_top_color = Color(0.5555752, 0.21058914, 0.13391468, 1)
@@ -168,3 +169,7 @@ theme_override_colors/font_color = Color(1, 0.16078432, 0, 1)
 theme_override_fonts/font = ExtResource("8_45tx0")
 theme_override_font_sizes/font_size = 30
 text = "12"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1339026903]
+stream = ExtResource("11_d2a0t")
+autoplay = true
