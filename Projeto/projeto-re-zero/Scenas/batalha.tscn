@@ -131,26 +131,14 @@ position = Vector2(581, 599)
 scale = Vector2(2, 2)
 texture = ExtResource("8_d2a0t")
 
-[node name="cart1" parent="CanvasLayer" unique_id=181800887 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
+[node name="cart1" parent="CanvasLayer" unique_id=181800887 instance=ExtResource("3_1ve5g")]
 position = Vector2(792, 537)
-qualCArt = 1
-battle_manager = NodePath("../../personagem/BattleManager")
-per = NodePath("../../personagem/markerPEr")
-carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
-[node name="cart2" parent="CanvasLayer" unique_id=937391906 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
+[node name="cart2" parent="CanvasLayer" unique_id=937391906 instance=ExtResource("3_1ve5g")]
 position = Vector2(634, 536)
-qualCArt = 2
-battle_manager = NodePath("../../personagem/BattleManager")
-per = NodePath("../../personagem/markerPEr")
-carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
-[node name="cart3" parent="CanvasLayer" unique_id=1221620671 node_paths=PackedStringArray("battle_manager", "per", "carta_inimigo") instance=ExtResource("3_1ve5g")]
+[node name="cart3" parent="CanvasLayer" unique_id=1221620671 instance=ExtResource("3_1ve5g")]
 position = Vector2(482, 536)
-qualCArt = 3
-battle_manager = NodePath("../../personagem/BattleManager")
-per = NodePath("../../personagem/markerPEr")
-carta_inimigo = NodePath("../../personagem/markerPEr2/InimigoCartd")
 
 [node name="Label2" type="Label" parent="CanvasLayer" unique_id=2007564062]
 offset_left = 979.0

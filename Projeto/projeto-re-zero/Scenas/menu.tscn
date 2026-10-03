@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bhge4occslq30"]
+
+[ext_resource type="Script" uid="uid://conoban8cglm5" path="res://Scripts/menu.gd" id="1_ncmwq"]
+[ext_resource type="AudioStream" uid="uid://fjceu50yvas5" path="res://sons/godot/freesound_community-chill-drum-loop-6887.wav" id="2_fxkq6"]
+
+[node name="menu" type="Control" unique_id=1878778424]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ncmwq")
+
+[node name="Button" type="Button" parent="." unique_id=1880783049]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 53.0
+offset_right = 123.0
+offset_bottom = 108.0
+text = "joga"
+
+[node name="Button3" type="Button" parent="." unique_id=1809570461]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 121.0
+offset_right = 139.0
+offset_bottom = 176.0
+text = "creditos"
+
+[node name="Button2" type="Button" parent="." unique_id=1208021002]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 183.0
+offset_right = 122.0
+offset_bottom = 238.0
+text = "sair"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1629305858]
+stream = ExtResource("2_fxkq6")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
