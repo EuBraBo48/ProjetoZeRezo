@@ -14,6 +14,7 @@ extends Sprite2D
 @export var h_1: Label 
 @export var h_2: Label 
 @export var h_3: Label
+@export var AAudioStreamPlayer: AudioStreamPlayer
 
 
 
@@ -38,29 +39,32 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 
 	if qualCart == 1:
-
 		nome.text = "nome: " + Gobla.cart1["nome"]
-
 		UpPo.text = "PowerDMG: nivel " + str(Gobla.DanoDaCart1)
 		UpVi.text = "PowerHP: nivel " + str(Gobla.vidaDaCart1)
-
 		if Gobla.vidaDaCart1 >= 3:
+			AAudioStreamPlayer.play()
 			up_vi.text = "MAX"
 			up_vi.disabled = true
 		elif Gobla.vidaDaCart1 == 2:
+			AAudioStreamPlayer.play()
 			up_vi.text = "40"
 			up_vi.disabled = false
 		else:
+			AAudioStreamPlayer.play()
 			up_vi.text = "20"
 			up_vi.disabled = false
 
 		if Gobla.DanoDaCart1 >= 3:
+			AAudioStreamPlayer.play()
 			up_po.text = "MAX"
 			up_po.disabled = true
 		elif Gobla.DanoDaCart1 == 2:
+			AAudioStreamPlayer.play()
 			up_po.text = "40"
 			up_po.disabled = false
 		else:
+			AAudioStreamPlayer.play()
 			up_po.text = "20"
 			up_po.disabled = false
 
@@ -73,22 +77,28 @@ func _process(_delta: float) -> void:
 		UpVi.text = "PowerHP: nivel " + str(Gobla.vidaDaCart2)
 
 		if Gobla.vidaDaCart2 >= 3:
+			AAudioStreamPlayer.play()
 			up_vi.text = "MAX"
 			up_vi.disabled = true
 		elif Gobla.vidaDaCart2 == 2:
+			AAudioStreamPlayer.play()
 			up_vi.text = "40"
 			up_vi.disabled = false
 		else:
+			AAudioStreamPlayer.play()
 			up_vi.text = "20"
 			up_vi.disabled = false
 
 		if Gobla.DanoDaCart2 >= 3:
+			AAudioStreamPlayer.play()
 			up_po.text = "MAX"
 			up_po.disabled = true
 		elif Gobla.DanoDaCart2 == 2:
+			AAudioStreamPlayer.play()
 			up_po.text = "40"
 			up_po.disabled = false
 		else:
+			AAudioStreamPlayer.play()
 			up_po.text = "20"
 			up_po.disabled = false
 
@@ -101,22 +111,28 @@ func _process(_delta: float) -> void:
 		UpVi.text = "PowerHP: nivel " + str(Gobla.vidaDaCart3)
 
 		if Gobla.vidaDaCart3 >= 3:
+			AAudioStreamPlayer.play()
 			up_vi.text = "MAX"
 			up_vi.disabled = true
 		elif Gobla.vidaDaCart3 == 2:
+			AAudioStreamPlayer.play()
 			up_vi.text = "40"
 			up_vi.disabled = false
 		else:
+			AAudioStreamPlayer.play()
 			up_vi.text = "20"
 			up_vi.disabled = false
 
 		if Gobla.DanoDaCart3 >= 3:
+			AAudioStreamPlayer.play()
 			up_po.text = "MAX"
 			up_po.disabled = true
 		elif Gobla.DanoDaCart3 == 2:
+			AAudioStreamPlayer.play()
 			up_po.text = "40"
 			up_po.disabled = false
 		else:
+			AAudioStreamPlayer.play()
 			up_po.text = "20"
 			up_po.disabled = false
 

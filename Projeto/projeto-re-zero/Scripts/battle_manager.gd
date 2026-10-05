@@ -499,16 +499,14 @@ func finalizar_partida() -> void:
 		if resultado_final == "PLAYER":
 
 			label_vez.text = "VOCÊ VENCEU!"
-
 			Gobla.Vitoria += 1
 			Gobla.PontoDePar += 30
 
 		elif resultado_final == "IA":
-
+			$"../../AudioStreamPlayer2".play()
 			label_vez.text = "IA VENCEU!"
 
 		else:
-
 			label_vez.text = "EMPATE!"
 
 	batalha_finalizada.emit(resultado_final)

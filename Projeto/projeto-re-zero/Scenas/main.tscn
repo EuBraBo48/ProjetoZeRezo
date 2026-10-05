@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bmnq6vafbwtfp" path="res://Scripts/PortaoParaBata.gd" id="4_s1m4t"]
 [ext_resource type="Script" uid="uid://c41cbskemqr5e" path="res://Scripts/DIALOGS.gd" id="10_iw5vi"]
 [ext_resource type="AudioStream" uid="uid://wn83w34gt8q5" path="res://sons/godot/freesound_community-cottagecore-17463.wav" id="12_wp5hg"]
+[ext_resource type="AudioStream" uid="uid://dnjjkksdqlcwm" path="res://sons/godot/videoplayback.wav" id="13_ekhp2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ue5qb"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -140,6 +141,11 @@ hud = NodePath(".")
 stream = ExtResource("12_wp5hg")
 autoplay = true
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=788806065]
+stream = ExtResource("13_ekhp2")
+
+[connection signal="body_entered" from="inimigos/bruxa/Area3D" to="inimigos/bruxa" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="inimigos/bruxa/Area3D" to="inimigos/bruxa" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="inimigos/esza/Area3D" to="inimigos/esza" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="inimigos/esza/Area3D" to="inimigos/esza" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="inimigos/equidina/Area3D" to="inimigos/equidina" method="_on_area_3d_body_entered"]

@@ -78,7 +78,7 @@ func _process(_delta: float) -> void:
 		# Está dentro do lugar correto
 			if is_inside_dropable and body_ref != null:
 				tween.tween_property(self, "global_position", body_ref.global_position, 0.2)
-
+				print("sdfesfewr")
 				if qualCArt == 1:
 					var coisa1 = Gobla.cart1["nome"]
 					Gobla.personagem_jogado = coisa1

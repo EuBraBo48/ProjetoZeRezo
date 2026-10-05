@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://bhge4occslq30"]
 
 [ext_resource type="Script" uid="uid://conoban8cglm5" path="res://Scripts/menu.gd" id="1_ncmwq"]
+[ext_resource type="Texture2D" uid="uid://b4jd3bqdk0j6p" path="res://assents/Re_Zero_kara_Hajimeru_Isekai_Seikatsu_logo.png" id="2_cmv2v"]
 [ext_resource type="AudioStream" uid="uid://fjceu50yvas5" path="res://sons/godot/freesound_community-chill-drum-loop-6887.wav" id="2_fxkq6"]
+[ext_resource type="Texture2D" uid="uid://c5utu4gtk0v6k" path="res://assents/cartes/cartaBet.png" id="3_sv1ck"]
+[ext_resource type="Texture2D" uid="uid://63li1xynn0n4" path="res://assents/cartes/CartaPRisl.png" id="4_0v07r"]
+[ext_resource type="Texture2D" uid="uid://1hbe18leqmfl" path="res://assents/cartes/cartRem.png" id="5_v5gp2"]
 
 [node name="menu" type="Control" unique_id=1878778424]
 layout_mode = 3
@@ -12,34 +16,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ncmwq")
 
-[node name="Button" type="Button" parent="." unique_id=1880783049]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1074705428]
 layout_mode = 0
-offset_left = 71.0
-offset_top = 53.0
-offset_right = 123.0
-offset_bottom = 108.0
+offset_right = 1181.0
+offset_bottom = 660.0
+color = Color(0.86036915, 0.8603692, 0.8603692, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=824960360]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 320.0
+offset_right = 90.0
+offset_bottom = 421.0
+scale = Vector2(3, 3)
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1880783049]
+layout_mode = 2
 text = "joga"
 
-[node name="Button3" type="Button" parent="." unique_id=1809570461]
-layout_mode = 0
-offset_left = 68.0
-offset_top = 121.0
-offset_right = 139.0
-offset_bottom = 176.0
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1809570461]
+layout_mode = 2
 text = "creditos"
 
-[node name="Button2" type="Button" parent="." unique_id=1208021002]
-layout_mode = 0
-offset_left = 70.0
-offset_top = 183.0
-offset_right = 122.0
-offset_bottom = 238.0
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=1208021002]
+layout_mode = 2
 text = "sair"
+
+[node name="ReZeroKaraHajimeruIsekaiSeikatsuLogo" type="Sprite2D" parent="VBoxContainer" unique_id=1640918914]
+position = Vector2(249.33333, -50.33334)
+texture = ExtResource("2_cmv2v")
+
+[node name="CartaBet" type="Sprite2D" parent="VBoxContainer" unique_id=1483987590]
+position = Vector2(141.84474, 71.548035)
+rotation = -0.38021648
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_sv1ck")
+
+[node name="CartaPRisl" type="Sprite2D" parent="VBoxContainer" unique_id=307399453]
+position = Vector2(232.84476, 68.548035)
+rotation = 0.045206934
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_0v07r")
+
+[node name="CartRem" type="Sprite2D" parent="VBoxContainer" unique_id=1692065529]
+position = Vector2(331.17807, 81.88136)
+rotation = 0.22516365
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_v5gp2")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1629305858]
 stream = ExtResource("2_fxkq6")
 autoplay = true
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]

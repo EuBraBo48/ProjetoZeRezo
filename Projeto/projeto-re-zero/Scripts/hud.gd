@@ -14,6 +14,7 @@ var vidaMor:= 0.0
 
 
 func _ready() -> void:
+	$"../../AudioStreamPlayer2".play()
 	Venceu = Gobla.Vitoria
 	progress_bar.max_value = vidaMaz
 	vidaMor = Gobla.Mortes
